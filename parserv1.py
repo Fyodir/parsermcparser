@@ -1,3 +1,5 @@
+# An XML parser in Python for reading an LRG file in .xml format and exporting exons coordinates
+
 # importing required modules
 import xml.etree.ElementTree as ET
 import sys
@@ -17,4 +19,7 @@ root = tree.getroot()
 # prints exon numbers of lrg file
 for child in root[0][8]:
     if child.tag == "exon":
-        print("Exon: " + (str(child.attrib))[-4:-2])
+        if (str(child.attrib))[-4] == "'":
+            print ("Exon: " + (str(child.attrib))[-3:-2])
+        else:
+            print("Exon: " + (str(child.attrib))[-4:-2])
