@@ -17,12 +17,14 @@ root = tree.getroot()
 
 
 # prints exon numbers of lrg file
-for child in root[0][8]:
-    if child.tag == "exon":
-        if (str(child.attrib))[-4] == "'":
-            print ("Exon: " + (str(child.attrib))[-3:-2])
-        elif (str(child.attrib))[-5] == "'":
-            print("Exon: " + (str(child.attrib))[-4:-2])
-        elif (str(child.attrib))[-6] == "'":
-            print ("Exon: " + (str(child.attrib))[-5:-2])
+for child in root[0]:
+    if child.tag == "transcript":
+        for i in child:
+            if i.tag == "exon":
+                if (str(i.attrib))[-4] == "'":
+                    print ("Exon: " + (str(i.attrib))[-3:-2])
+                elif (str(i.attrib))[-5] == "'":
+                    print("Exon: " + (str(i.attrib))[-4:-2])
+                elif (str(i.attrib))[-6] == "'":
+                    print ("Exon: " + (str(i.attrib))[-5:-2])
 
