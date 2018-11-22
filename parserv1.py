@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 import sys
 
 # read input filename from argument
-fileName = sys.argv[1]  # type: xml file
+fileName = sys.argv[1]  # type: xml_file
 
 #Check file name is valid .xml
 assert fileName[-4:] == '.xml', 'You have the wrong input file'
@@ -21,5 +21,8 @@ for child in root[0][8]:
     if child.tag == "exon":
         if (str(child.attrib))[-4] == "'":
             print ("Exon: " + (str(child.attrib))[-3:-2])
-        else:
+        elif (str(child.attrib))[-5] == "'":
             print("Exon: " + (str(child.attrib))[-4:-2])
+        elif (str(child.attrib))[-6] == "'":
+            print ("Exon: " + (str(child.attrib))[-5:-2])
+
