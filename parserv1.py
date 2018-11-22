@@ -3,6 +3,7 @@
 # importing required modules
 import xml.etree.ElementTree as ET
 import sys
+import numpy as np
 
 # read input filename from argument
 fileName = sys.argv[1]  # type: xml_file
@@ -52,10 +53,21 @@ def exon_coord(root):
             for exon in child:
                 if exon.tag == "exon":
                    exon_end_list.append(exon[0].attrib["end"])
-    return (exon_start_list, exon_end_list)
+    return exon_start_list, exon_end_list
+
+start_list, end_list = map(list, zip(exon_coord(root)))
+start_list = start_list[0]
+end_list = end_list[0]
 
 
-print(exon_coord(root))
+
 #print(exon_num_var)
+#print(start_list)
+#print(end_list)
+#print(exon_num_var)
+
+
+array = [exon_num_var, start_list, end_list]
+print(np.asarray(array))
 
 
