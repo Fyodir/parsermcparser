@@ -63,8 +63,15 @@ start_list, end_list = map(list, zip(exon_coord(root)))
 start_list = np.asarray(start_list[0])
 end_list = np.asarray(end_list[0]) # Pulls first entry from nested lists
 
-# writing output file named by gene name, including exon number & LRG coordinates
-with open('%s.bed' % gene, 'w') as file_temp:
+header = "Exon\tStart\tEnd\n" # headers for output text file
+
+
+# writing output file named by gene name, including exon number & LRG coordinates & headers
+
+with open('%s.bed' % gene, 'w+') as file_temp:
+    file_temp.write(header)
+
+with open('%s.bed' % gene, 'a') as file_temp:
     for (exon_num_var, start_list, end_list) in zip(exon_num_var, start_list, end_list):
         file_temp.write("{0}\t{1}\t{2}\n".format(exon_num_var, start_list, end_list))
 
