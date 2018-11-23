@@ -19,7 +19,6 @@ assert len(sys.argv) < 3, "Too many arguments"
 
 # Inputting XML file
 tree = ET.parse(fileName)
-
 root = tree.getroot()
 
 for gene_name in tree.findall('.//lrg_locus'):
@@ -77,19 +76,31 @@ for i in end_list[0]:
 exon_len = list(imap(sub, end_list_int, start_list_int))
 
 
-
-
 start_list = np.asarray(start_list[0])
 end_list = np.asarray(end_list[0]) # Pulls first entry from nested lists
 
 
 
-# print(exon_len(start_list, end_list))
 
-header = "Exon\tStart\tEnd\t\tLength\n" # headers for output text file
+
+for gene_name in tree.findall('.//lrg_locus'):
+    gene = gene_name.text
+
+# function to check if genome build is GRCh37.p13/
+def gen_build(a):
+    for i in a.findall('.//mapping'):
+        if i.attrib["coord_system"] == "GRCh37.p13":
+            return (i.attrib["coord_system"])
+
+print(gen_build(tree))
+
+
+
 
 
 # writing output file named by gene name, including exon number & LRG coordinates & headers
+
+header = "Exon\tStart\tEnd\t\tLength\n" # headers for output text file
 
 with open('%s.bed' % gene, 'w+') as file_temp:
     file_temp.write(header)
