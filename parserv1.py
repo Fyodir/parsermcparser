@@ -4,8 +4,9 @@
 import xml.etree.ElementTree as ET
 import sys
 import numpy as np
-import os
-import re
+from itertools import imap
+from operator import sub
+
 
 # read input filename from argument
 fileName = sys.argv[1]  # type: xml_file
@@ -60,10 +61,32 @@ def exon_coord(root):
     return exon_start_list, exon_end_list
 
 start_list, end_list = map(list, zip(exon_coord(root)))
+
+
+# Converts start_list and end_list to integer values
+start_list_int = []
+end_list_int = []
+
+for i in start_list[0]:
+    start_list_int.append(int(i))
+
+for i in end_list[0]:
+    end_list_int.append(int(i))
+
+# calculates exon length
+exon_len = list(imap(sub, end_list_int, start_list_int))
+
+
+
+
 start_list = np.asarray(start_list[0])
 end_list = np.asarray(end_list[0]) # Pulls first entry from nested lists
 
-header = "Exon\tStart\tEnd\n" # headers for output text file
+
+
+# print(exon_len(start_list, end_list))
+
+header = "Exon\tStart\tEnd\t\tLength\n" # headers for output text file
 
 
 # writing output file named by gene name, including exon number & LRG coordinates & headers
@@ -72,18 +95,6 @@ with open('%s.bed' % gene, 'w+') as file_temp:
     file_temp.write(header)
 
 with open('%s.bed' % gene, 'a') as file_temp:
-    for (exon_num_var, start_list, end_list) in zip(exon_num_var, start_list, end_list):
-        file_temp.write("{0}\t\t{1}\t{2}\n".format(exon_num_var, start_list, end_list))
+    for (exon_num_var, start_list, end_list, exon_len) in zip(exon_num_var, start_list, end_list, exon_len):
+        file_temp.write("{0}\t\t{1}\t{2}\t{3}\n".format(exon_num_var, start_list, end_list, exon_len))
 
-
-
-
-#print(gene)
-#print(exon_num_var)
-#print(start_list)
-#print(end_list)
-
-
-#a = [exon_num_var, start_list, end_list]
-#nparray = (np.asarray(a))
-#np.savetxt("test.txt", np.c_[exon_num_var, start_list, end_list], delimiter='\t')
