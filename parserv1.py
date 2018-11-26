@@ -91,6 +91,13 @@ for i in tree.findall('.//mapping'):
     if i.attrib["coord_system"] == "GRCh37.p13":
         gene_chr_start = int(i[0].attrib["other_start"])
 
+#identify between forward strand(1) and reverse strand(-1)
+for i in tree.findall('.//mapping'):
+    if i.attrib["coord_system"] == "GRCh37.p13":
+        strand = int(i[0].attrib["strand"])
+
+print(strand)
+
 # mapping LRG coords to chromosomal coordinates (FORWARD STRAND ONLY)
 chr_exon_start = []
 for coord in lrg_start_list:
