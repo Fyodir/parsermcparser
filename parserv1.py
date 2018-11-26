@@ -78,13 +78,14 @@ for i in end_list_str[0]:
 # calculates exon length (unused value in BED file)
 #exon_len = list(imap(sub, end_list_int, lrg_start_list))
 
-'''
-start_list = np.asarray(start_list[0])
-end_list = np.asarray(end_list[0]) # Pulls first entry from nested lists
-'''
 
 for gene_name in tree.findall('.//lrg_locus'):
     gene = gene_name.text
+
+# Pulls chromosome number from XML
+for i in tree.findall('.//mapping'):
+    if i.attrib["coord_system"] == "GRCh37.p13":
+        chromosome = i.attrib["other_name"]
 
 
 #for loop to obtain start coords of gene on GRCh37.p13
@@ -119,14 +120,23 @@ else: # Mapping of LRG coordinates to chromosomal locations
     for coord in lrg_end_list:
         chr_exon_end.append(gene_chr_end - coord + 1)
 
+chr_list = []
+count = 0
+while count < len(chr_exon_start):
+    chr_list.append(int(chromosome))
+    count += 1
+
+
+# Creates a date/time stamp for creaton of BED file
 date = time.strftime("File created: %d/%m/%Y  %H:%M:%S\n\n")
 
-# writing output file named by gene name, including exon number & LRG coordinates & headers
+# Creation of output file named by gene name
+# Includes date/time stamp, column headers, followed by various columns of data
 
-header = "Exon\tStart\tEnd\n" # headers for output text file
+header = "Chr\tExon\tStart\t\tEnd\n" # headers for output text file
 
 with open('%s.bed' % gene, 'w+') as file_temp:
     file_temp.write(date)
     file_temp.write(header)
-    for (exon_num_var, chr_exon_start, chr_exon_end) in zip(exon_num_var, chr_exon_start, chr_exon_end):
-        file_temp.write("{0}\t{1}\t{2}\n".format(exon_num_var, chr_exon_start, chr_exon_end))
+    for (chr_list, exon_num_var, chr_exon_start, chr_exon_end) in zip(chr_list, exon_num_var, chr_exon_start, chr_exon_end):
+        file_temp.write("{0}\t{1}\t{2}\t{3}\n".format(chr_list, exon_num_var, chr_exon_start, chr_exon_end))
