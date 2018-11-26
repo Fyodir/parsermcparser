@@ -91,21 +91,32 @@ for i in tree.findall('.//mapping'):
     if i.attrib["coord_system"] == "GRCh37.p13":
         gene_chr_start = int(i[0].attrib["other_start"])
 
+for i in tree.findall('.//mapping'):
+    if i.attrib["coord_system"] == "GRCh37.p13":
+        gene_chr_end = int(i[0].attrib["other_end"])
+
 #identify between forward strand(1) and reverse strand(-1)
 for i in tree.findall('.//mapping'):
     if i.attrib["coord_system"] == "GRCh37.p13":
         strand = int(i[0].attrib["strand"])
 
-print(strand)
+# Mapping LRG coords to chromosomal coordinates (FORWARD STRAND ONLY)
+if strand == 1:
+    chr_exon_start = []
+    for coord in lrg_start_list:
+        chr_exon_start.append(coord + gene_chr_start -1)
 
-# mapping LRG coords to chromosomal coordinates (FORWARD STRAND ONLY)
-chr_exon_start = []
-for coord in lrg_start_list:
-    chr_exon_start.append(coord + gene_chr_start -1)
+    chr_exon_end = []
+    for coord in lrg_end_list:
+        chr_exon_end.append(coord + gene_chr_start -1)
 
-chr_exon_end = []
-for coord in lrg_end_list:
-    chr_exon_end.append(coord + gene_chr_start -1)
+else: # Mapping of LRG toordinates to chromosomal locations
+    chr_exon_start = []
+    for coord in lrg_start_list:
+        chr_exon_start.append(gene_chr_end - coord + 1)
+    chr_exon_end = []
+    for coord in lrg_end_list:
+        chr_exon_end.append(gene_chr_end - coord + 1)
 
 
 
