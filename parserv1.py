@@ -128,7 +128,5 @@ header = "Exon\tStart\tEnd\n" # headers for output text file
 with open('%s.bed' % gene, 'w+') as file_temp:
     file_temp.write(date)
     file_temp.write(header)
-
-with open('%s.bed' % gene, 'a') as file_temp:
     for (exon_num_var, chr_exon_start, chr_exon_end) in zip(exon_num_var, chr_exon_start, chr_exon_end):
         file_temp.write("{0}\t{1}\t{2}\n".format(exon_num_var, chr_exon_start, chr_exon_end))
