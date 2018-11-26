@@ -4,7 +4,7 @@
 import xml.etree.ElementTree as ET
 import sys
 import numpy as np
-from itertools import imap
+#from itertools import imap
 from operator import sub
 
 
@@ -59,53 +59,48 @@ def exon_coord(root):
                    exon_end_list.append(exon[0].attrib["end"])
     return exon_start_list, exon_end_list
 
-start_list, end_list = map(list, zip(exon_coord(root)))
+start_list_str, end_list_str = map(list, zip(exon_coord(root)))
 
 
-# Converts start_list and end_list to integer values
-start_list_int = []
-end_list_int = []
+# Converts start_list_str and end_list_str to integer values
+lrg_start_list = []
+lrg_end_list = []
 
-for i in start_list[0]:
-    start_list_int.append(int(i))
+for i in start_list_str[0]:
+    lrg_start_list.append(int(i))
 
-for i in end_list[0]:
-    end_list_int.append(int(i))
-
-# calculates exon length
-exon_len = list(imap(sub, end_list_int, start_list_int))
+for i in end_list_str[0]:
+    lrg_end_list.append(int(i))
 
 
+
+# calculates exon length (unused value in BED file)
+#exon_len = list(imap(sub, end_list_int, lrg_start_list))
+
+'''
 start_list = np.asarray(start_list[0])
 end_list = np.asarray(end_list[0]) # Pulls first entry from nested lists
-
-
-
-
+'''
 
 for gene_name in tree.findall('.//lrg_locus'):
     gene = gene_name.text
 
-# function to check if genome build is GRCh37.p13/
-def gen_build(a):
-    for i in a.findall('.//mapping'):
-        if i.attrib["coord_system"] == "GRCh37.p13":
-            return (i.attrib["coord_system"])
 
-print(gen_build(tree))
-
+#for loop to obtain start coords of gene on GRCh37.p13
+for i in tree.findall('.//mapping'):
+    if i.attrib["coord_system"] == "GRCh37.p13":
+        gene_chr_start = int(i[0].attrib["other_start"])
 
 
 
 
 # writing output file named by gene name, including exon number & LRG coordinates & headers
 
-header = "Exon\tStart\tEnd\t\tLength\n" # headers for output text file
+header = "Exon\tStart\tEnd\n" # headers for output text file
 
 with open('%s.bed' % gene, 'w+') as file_temp:
     file_temp.write(header)
 
 with open('%s.bed' % gene, 'a') as file_temp:
-    for (exon_num_var, start_list, end_list, exon_len) in zip(exon_num_var, start_list, end_list, exon_len):
-        file_temp.write("{0}\t\t{1}\t{2}\t{3}\n".format(exon_num_var, start_list, end_list, exon_len))
-
+    for (exon_num_var, lrg_start_list, lrg_end_list) in zip(exon_num_var, lrg_start_list, lrg_end_list):
+        file_temp.write("{0}\t\t{1}\t{2}\n".format(exon_num_var, lrg_start_list, lrg_end_list))
