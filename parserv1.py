@@ -6,6 +6,7 @@ import sys
 import numpy as np
 #from itertools import imap
 from operator import sub
+import time
 
 
 # read input filename from argument
@@ -110,7 +111,7 @@ if strand == 1:
     for coord in lrg_end_list:
         chr_exon_end.append(coord + gene_chr_start -1)
 
-else: # Mapping of LRG toordinates to chromosomal locations
+else: # Mapping of LRG coordinates to chromosomal locations
     chr_exon_start = []
     for coord in lrg_start_list:
         chr_exon_start.append(gene_chr_end - coord + 1)
@@ -118,15 +119,16 @@ else: # Mapping of LRG toordinates to chromosomal locations
     for coord in lrg_end_list:
         chr_exon_end.append(gene_chr_end - coord + 1)
 
-
+date = time.strftime("File created: %d/%m/%Y  %H:%M:%S\n\n")
 
 # writing output file named by gene name, including exon number & LRG coordinates & headers
 
 header = "Exon\tStart\tEnd\n" # headers for output text file
 
 with open('%s.bed' % gene, 'w+') as file_temp:
+    file_temp.write(date)
     file_temp.write(header)
 
 with open('%s.bed' % gene, 'a') as file_temp:
     for (exon_num_var, chr_exon_start, chr_exon_end) in zip(exon_num_var, chr_exon_start, chr_exon_end):
-        file_temp.write("{0}\t\t{1}\t{2}\n".format(exon_num_var, chr_exon_start, chr_exon_end))
+        file_temp.write("{0}\t{1}\t{2}\n".format(exon_num_var, chr_exon_start, chr_exon_end))
