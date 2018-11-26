@@ -91,6 +91,14 @@ for i in tree.findall('.//mapping'):
     if i.attrib["coord_system"] == "GRCh37.p13":
         gene_chr_start = int(i[0].attrib["other_start"])
 
+# mapping LRG coords to chromosomal coordinates (FORWARD STRAND ONLY)
+chr_exon_start = []
+for coord in lrg_start_list:
+    chr_exon_start.append(coord + gene_chr_start -1)
+
+chr_exon_end = []
+for coord in lrg_end_list:
+    chr_exon_end.append(coord + gene_chr_start -1)
 
 
 
@@ -102,5 +110,5 @@ with open('%s.bed' % gene, 'w+') as file_temp:
     file_temp.write(header)
 
 with open('%s.bed' % gene, 'a') as file_temp:
-    for (exon_num_var, lrg_start_list, lrg_end_list) in zip(exon_num_var, lrg_start_list, lrg_end_list):
-        file_temp.write("{0}\t\t{1}\t{2}\n".format(exon_num_var, lrg_start_list, lrg_end_list))
+    for (exon_num_var, chr_exon_start, chr_exon_end) in zip(exon_num_var, chr_exon_start, chr_exon_end):
+        file_temp.write("{0}\t\t{1}\t{2}\n".format(exon_num_var, chr_exon_start, chr_exon_end))
