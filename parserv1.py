@@ -22,8 +22,11 @@ assert len(sys.argv) < 3, "Too many arguments"
 tree = ET.parse(fileName)
 root = tree.getroot()
 
+lrg = sys.argv[1]
+
+
 for gene_name in tree.findall('.//lrg_locus'):
-    gene = gene_name.text
+    gene = lrg[:-4] + "_" + gene_name.text
 
 # function to return exon numbers of lrg file in a list
 def exon_num(root):
@@ -78,9 +81,6 @@ for i in end_list_str[0]:
 # calculates exon length (unused value in BED file)
 #exon_len = list(imap(sub, end_list_int, lrg_start_list))
 
-
-for gene_name in tree.findall('.//lrg_locus'):
-    gene = gene_name.text
 
 # Pulls chromosome number from XML
 for i in tree.findall('.//mapping'):
