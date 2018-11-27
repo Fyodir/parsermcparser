@@ -35,7 +35,7 @@ root = tree.getroot()
 
 
 for gene_name in tree.findall('.//lrg_locus'):
-    gene = 'LRG' + '_' + input_lrg + "_" + gene_name.text
+    gene = 'LRG' + '_' + str(input_lrg) + "_" + gene_name.text
 
 # function to return exon numbers of lrg file in a list
 def exon_num(root):
