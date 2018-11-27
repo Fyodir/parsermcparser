@@ -4,7 +4,7 @@
 import xml.etree.ElementTree as ET
 import sys
 import numpy as np
-#from itertools import imap
+from itertools import imap
 from operator import sub
 import time
 import requests
@@ -88,8 +88,9 @@ for i in end_list_str[0]:
 
 
 # calculates exon length (unused value in BED file)
-#exon_len = list(imap(sub, end_list_int, lrg_start_list))
+exon_len = list(imap(sub, lrg_list_int, lrg_start_list))
 
+print (exon_len)
 
 # Pulls chromosome number from XML
 for i in tree.findall('.//mapping'):
@@ -129,6 +130,9 @@ else: # Mapping of LRG coordinates to chromosomal locations
     for coord in lrg_end_list:
         chr_exon_end.append(gene_chr_end - coord + 1)
 
+
+
+# pulls chromosome number from input lrg xml
 chr_list = []
 count = 0
 while count < len(chr_exon_start):
