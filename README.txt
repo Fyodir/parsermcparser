@@ -1,14 +1,43 @@
 An XML parser in Python for reading an LRG file and exporting exons coordinates
 
+---parserv1.py---
+
 Target XML file must be located within the parsermcparser file directory
 
 Input:
     - pass input xml file to program as string input
+    
+Output:
+    - .bed file of queried gene titled "LRG_(LRG number here)_(HGNC nomenclature).bed"
 
-To run the program, run the following code on the bash shell when positioned
-within the 'parsermcparser' file directory:
+Instructions:
+    - Naviagte to the "parsermcparser" directory on the bash terminal
+    - Run the cmd line "python3 parserv1 (insert target xml file)"
+    - A bed file will be created in the "parsermcparser" directory titled:
+        - "LRG_(LRG number here)_(HGNC nomenclature).bed"
 
-  "python3 parserv1 [insert target xml file]"
+Example Input Sequence:
+    "python3 parserv1 LRG_391.xml" [enter]
+    
+---fancyparser.py---
 
-  example:
-    "python3 parserv1 LRG_391.xml"
+A currently in development version of parserv1.py
+
+Utilises a user input to extract an LRG.xml file from the LRG website for use in generating a BED file, rather than requiring the xml file to already be located within the "parsermcparser" directory
+
+Input:
+    - use input of desired LRG number
+ 
+Output:
+    - .xml file of queried gene titled "LRG_(LRG number here).xml"
+    - .bed file of queried gene titled "LRG_(LRG number here)_(HGNC nomenclature).bed"
+
+Instructions for use:
+    - Navigate to the "parsermcparser" directory on the bash terminal
+    - Run the cmd line "python3 fancyparser.py"
+    - You will be prompted with the "Please enter LRG number: " request
+    - Enter LRG number of desired query gene
+    
+Example Input Sequence:
+    "python3 fancyparser.py" [enter]
+    Please enter LRG number: 39 [enter]
