@@ -1,4 +1,4 @@
-An XML parser in Python for reading an LRG file and exporting exons coordinates
+An XML parser in Python for producing a bed file from an LRG_xml file obtained from the LRG-Sequence website "https://www.lrg-sequence.org/index.html"
 
 ---parserv1.py---
 
@@ -11,8 +11,9 @@ Output:
     - .bed file of queried gene titled "LRG_(LRG number here)_(HGNC nomenclature).bed"
 
 Instructions:
+    - Ensure target LRG_xml file is located within the parsermcparser directory
     - Naviagte to the "parsermcparser" directory on the bash terminal
-    - Run the cmd line "python3 parserv1 (insert target xml file)"
+    - Run the cmd line "python3 parserv1 (insert target xml file)" [enter]
     - A bed file will be created in the "parsermcparser" directory titled:
         - "LRG_(LRG number here)_(HGNC nomenclature).bed"
 
@@ -34,9 +35,9 @@ Output:
 
 Instructions for use:
     - Navigate to the "parsermcparser" directory on the bash terminal
-    - Run the cmd line "python3 fancyparser.py"
+    - Run the cmd line "python3 fancyparser.py" [enter]
     - You will be prompted with the "Please enter LRG number: " request
-    - Enter LRG number of desired query gene
+    - Enter LRG number of desired query gene [enter]
     
 Example Input Sequence:
     "python3 fancyparser.py" [enter]
