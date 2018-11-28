@@ -133,7 +133,7 @@ else: # Mapping of LRG coordinates to chromosomal locations
 chr_list = []
 count = 0
 while count < len(chr_exon_start):
-    chr_list.append(int(chromosome))
+    chr_list.append("chr" + chromosome)
     count += 1
 
 
@@ -143,7 +143,7 @@ date = time.strftime("File created: %d/%m/%Y  %H:%M:%S\n\n")
 # Creation of output file named by gene name
 # Includes date/time stamp, column headers, followed by various columns of data
 
-header = "Chr\tExon\tStart\t\tEnd\n" # headers for output text file
+header = "\tExon\tStart\t\tEnd\n" # headers for output text file
 
 with open('%s.bed' % gene, 'w+') as file_temp:
     file_temp.write(date)
