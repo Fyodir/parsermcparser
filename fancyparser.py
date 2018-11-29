@@ -85,11 +85,12 @@ for i in start_list_str[0]:
 for i in end_list_str[0]:
     lrg_end_list.append(int(i))
 
-
-
-# calculates exon length (unused value in BED file)
-#exon_len = list(imap(sub, end_list_int, lrg_start_list))
-
+# calculates exon lengths 
+exon_len = []
+exon_len_count = 0
+for i in lrg_start_list:
+    exon_len.append(lrg_end_list[exon_len_count]-lrg_start_list[exon_len_count])
+    exon_len_count += 1
 
 # Pulls chromosome number from XML
 for i in tree.findall('.//mapping'):
@@ -148,11 +149,11 @@ date = time.strftime("File created: %d/%m/%Y  %H:%M:%S\n\n")
 # Creation of output file named by gene name
 # Includes date/time stamp, column headers, followed by various columns of data
 
-header = "\tExon\tStart\t\tEnd\n" # headers for output text file
+header = "\tExon\tStart\t\tEnd\t\tLength\n" # headers for output text file
 
 with open('%s.bed' % gene, 'w+') as file_temp:
     file_temp.write(date)
     file_temp.write(strand)
     file_temp.write(header)
-    for (chr_list, exon_num_var, chr_exon_start, chr_exon_end) in zip(chr_list, exon_num_var, chr_exon_start, chr_exon_end):
-        file_temp.write("{0}\t{1}\t{2}\t{3}\n".format(chr_list, exon_num_var, chr_exon_start, chr_exon_end))
+    for (chr_list, exon_num_var, chr_exon_start, chr_exon_end, exon_len) in zip(chr_list, exon_num_var, chr_exon_start, chr_exon_end, exon_len):
+        file_temp.write("{0}\t{1}\t{2}\t{3}\t{4}\n".format(chr_list, exon_num_var, chr_exon_start, chr_exon_end, exon_len))
