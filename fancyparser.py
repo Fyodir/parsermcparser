@@ -111,7 +111,7 @@ for i in tree.findall('.//mapping'):
     if i.attrib["coord_system"] == "GRCh37.p13":
         strand = int(i[0].attrib["strand"])
 
-# Mapping LRG coords to chromosomal coordinates (FORWARD STRAND ONLY)
+# Mapping LRG coords to chromosomal coordinates (FORWARD STRAND)
 if strand == 1:
     chr_exon_start = []
     for coord in lrg_start_list:
@@ -121,13 +121,18 @@ if strand == 1:
     for coord in lrg_end_list:
         chr_exon_end.append(coord + gene_chr_start -1)
 
-else: # Mapping of LRG coordinates to chromosomal locations
+else: # Mapping of LRG coordinates to chromosomal locations (REVERSE STRAND)
     chr_exon_start = []
     for coord in lrg_start_list:
         chr_exon_start.append(gene_chr_end - coord + 1)
     chr_exon_end = []
     for coord in lrg_end_list:
         chr_exon_end.append(gene_chr_end - coord + 1)
+
+if strand == 1:
+    strand = "Forward Strand\n\n"
+else:
+    strand = "Reverse Strand\n\n"
 
 # pulls chromosome number from input LRG_xml
 chr_list = []
@@ -138,7 +143,7 @@ while count < len(chr_exon_start):
 
 
 # Creates a date/time stamp for creaton of BED file
-date = time.strftime("File created: %d/%m/%Y  %H:%M:%S\n\n")
+date = time.strftime("File created: %d/%m/%Y  %H:%M:%S\n")
 
 # Creation of output file named by gene name
 # Includes date/time stamp, column headers, followed by various columns of data
@@ -147,6 +152,7 @@ header = "\tExon\tStart\t\tEnd\n" # headers for output text file
 
 with open('%s.bed' % gene, 'w+') as file_temp:
     file_temp.write(date)
+    file_temp.write(strand)
     file_temp.write(header)
     for (chr_list, exon_num_var, chr_exon_start, chr_exon_end) in zip(chr_list, exon_num_var, chr_exon_start, chr_exon_end):
         file_temp.write("{0}\t{1}\t{2}\t{3}\n".format(chr_list, exon_num_var, chr_exon_start, chr_exon_end))
