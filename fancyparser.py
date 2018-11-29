@@ -143,7 +143,7 @@ while count < len(chr_exon_start):
 
 
 # Creates a date/time stamp for creaton of BED file
-date = time.strftime("File created: %d/%m/%Y  %H:%M:%S\n")
+date = time.strftime("File created: %d/%m/%Y  %H:%M:%S\n\n")
 
 # Creation of output file named by gene name
 # Includes date/time stamp, column headers, followed by various columns of data
