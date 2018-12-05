@@ -85,20 +85,20 @@ for i in start_list_str[0]:
 for i in end_list_str[0]:
     lrg_end_list.append(int(i))
 
-# calculates exon lengths 
+# calculates exon lengths
 exon_len = []
 exon_len_count = 0
 for i in lrg_start_list:
     exon_len.append(lrg_end_list[exon_len_count]-lrg_start_list[exon_len_count])
     exon_len_count += 1
-
+'''
 # Pulls chromosome number from XML
 for i in tree.findall('.//mapping'):
     if i.attrib["coord_system"] == "GRCh37.p13":
         chromosome = i.attrib["other_name"]
 
 
-#for loop to obtain start coords of gene on GRCh37.p13
+#for loop to obtain start/end coords of gene on GRCh37.p13
 for i in tree.findall('.//mapping'):
     if i.attrib["coord_system"] == "GRCh37.p13":
         gene_chr_start = int(i[0].attrib["other_start"])
@@ -111,6 +111,15 @@ for i in tree.findall('.//mapping'):
 for i in tree.findall('.//mapping'):
     if i.attrib["coord_system"] == "GRCh37.p13":
         strand = int(i[0].attrib["strand"])
+'''
+
+for i in tree.findall('.//mapping'):
+    if i.attrib["coord_system"] == "GRCh37.p13":
+        chromosome = i.attrib["other_name"]
+        gene_chr_start = int(i[0].attrib["other_start"])
+        gene_chr_end = int(i[0].attrib["other_end"])
+        strand = int(i[0].attrib["strand"])
+
 
 # Mapping LRG coords to chromosomal coordinates (FORWARD STRAND)
 if strand == 1:
