@@ -25,7 +25,7 @@ Example Input Sequence:
 
 ---parserv1.py---
 
-(First version of the LRG XML parsing program)
+(Original working version of the LRG XML parsing program)
 
 Target XML file must be located within the parsermcparser file directory
 
