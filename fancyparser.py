@@ -17,7 +17,6 @@ open('LRG_%s.xml' % input_lrg, 'wb').write(r.content)
 
 fileName = open('LRG_%s.xml' % input_lrg, 'r')
 
-
 # Check file name is valid .xml
 #assert fileName[0:2] == 'LRG', 'This is not an LRG'
 
@@ -32,7 +31,6 @@ tree = ET.parse(fileName)
 root = tree.getroot()
 
 # lrg = sys.argv[1]
-
 
 for gene_name in tree.findall('.//lrg_locus'):
     gene = 'LRG' + '_' + str(input_lrg) + "_" + gene_name.text
@@ -85,40 +83,23 @@ for i in start_list_str[0]:
 for i in end_list_str[0]:
     lrg_end_list.append(int(i))
 
-# calculates exon lengths
-exon_len = []
-exon_len_count = 0
-for i in lrg_start_list:
-    exon_len.append(lrg_end_list[exon_len_count]-lrg_start_list[exon_len_count])
-    exon_len_count += 1
-'''
-# Pulls chromosome number from XML
-for i in tree.findall('.//mapping'):
-    if i.attrib["coord_system"] == "GRCh37.p13":
-        chromosome = i.attrib["other_name"]
+# function to calculate exon lengths
+def exon_len_func(a,b):
+    exon_len = []
+    exon_len_count = 0
+    for i in a:
+        exon_len.append(b[exon_len_count]-a[exon_len_count])
+        exon_len_count += 1
+    return exon_len
 
-
-#for loop to obtain start/end coords of gene on GRCh37.p13
-for i in tree.findall('.//mapping'):
-    if i.attrib["coord_system"] == "GRCh37.p13":
-        gene_chr_start = int(i[0].attrib["other_start"])
+exon_len = exon_len_func(lrg_start_list, lrg_end_list)
 
 for i in tree.findall('.//mapping'):
     if i.attrib["coord_system"] == "GRCh37.p13":
-        gene_chr_end = int(i[0].attrib["other_end"])
-
-#identify between forward strand(1) and reverse strand(-1)
-for i in tree.findall('.//mapping'):
-    if i.attrib["coord_system"] == "GRCh37.p13":
-        strand = int(i[0].attrib["strand"])
-'''
-
-for i in tree.findall('.//mapping'):
-    if i.attrib["coord_system"] == "GRCh37.p13":
-        chromosome = i.attrib["other_name"]
-        gene_chr_start = int(i[0].attrib["other_start"])
-        gene_chr_end = int(i[0].attrib["other_end"])
-        strand = int(i[0].attrib["strand"])
+        chromosome = i.attrib["other_name"] # Pulls chromosome number from XML
+        gene_chr_start = int(i[0].attrib["other_start"]) #for loop to obtain start coords of gene on GRCh37.p13
+        gene_chr_end = int(i[0].attrib["other_end"]) #for loop to obtain end coords of gene on GRCh37.p13
+        strand = int(i[0].attrib["strand"]) #identify between forward strand(1) and reverse strand(-1)
 
 
 # Mapping LRG coords to chromosomal coordinates (FORWARD STRAND)
