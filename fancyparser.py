@@ -142,11 +142,11 @@ date = time.strftime("File created: %d/%m/%Y  %H:%M:%S\n\n")
 # Creation of output file named by gene name
 # Includes date/time stamp, column headers, followed by various columns of data
 
-header = "\tExon\tStart\t\tEnd\t\tLength\n" # headers for output text file
+header = "\tStart\t\tEnd\t\tExon\tLength\n" # headers for output text file
 
 with open('%s.bed' % gene, 'w+') as file_temp:
     file_temp.write(date)
     file_temp.write(strand)
     file_temp.write(header)
-    for (chr_list, exon_num_var, chr_exon_start, chr_exon_end, exon_len) in zip(chr_list, exon_num_var, chr_exon_start, chr_exon_end, exon_len):
-        file_temp.write("{0}\t{1}\t{2}\t{3}\t{4}\n".format(chr_list, exon_num_var, chr_exon_start, chr_exon_end, exon_len))
+    for (chr_list, chr_exon_start, chr_exon_end, exon_num_var, exon_len) in zip(chr_list, chr_exon_start, chr_exon_end, exon_num_var, exon_len):
+        file_temp.write("{0}\t{1}\t{2}\t{3}\t{4}\n".format(chr_list, chr_exon_start, chr_exon_end, exon_num_var, exon_len))
