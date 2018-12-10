@@ -4,7 +4,6 @@
 import xml.etree.ElementTree as ET
 import sys
 import numpy as np
-#from itertools import imap
 from operator import sub
 import time
 import requests
@@ -20,20 +19,9 @@ open('LRG_%s.xml' % input_lrg, 'wb').write(r.content)
 
 fileName = open('LRG_%s.xml' % input_lrg, 'r')
 
-# Check file name is valid .xml
-#assert fileName[0:2] == 'LRG', 'This is not an LRG'
-
-# Check file name is valid .xml
-#assert fileName[-4:] == '.xml', 'You have the wrong input file'
-
-# Check no additional arguments provided on command line
-#assert len(sys.argv) < 3, "Too many arguments"
-
 # Inputting XML file
 tree = ET.parse(fileName)
 root = tree.getroot()
-
-# lrg = sys.argv[1]
 
 for gene_name in tree.findall('.//lrg_locus'):
     gene = 'LRG' + '_' + str(input_lrg) + "_" + gene_name.text
@@ -55,9 +43,7 @@ def exon_num(root):
                         print("Something is wrong with the XML file")
     return(exon_num_list)
 
-
 exon_num_var = np.asarray(exon_num(root))
-
 
 # function to return two lists for start and end coordinates of exons respectively
 def exon_coord(root):
@@ -74,7 +60,6 @@ def exon_coord(root):
     return exon_start_list, exon_end_list
 
 start_list_str, end_list_str = map(list, zip(exon_coord(root)))
-
 
 # Converts start_list_str and end_list_str to integer values
 lrg_start_list = []
@@ -103,7 +88,6 @@ for i in tree.findall('.//mapping'):
         gene_chr_start = int(i[0].attrib["other_start"]) #for loop to obtain start coords of gene on GRCh37.p13
         gene_chr_end = int(i[0].attrib["other_end"]) #for loop to obtain end coords of gene on GRCh37.p13
         strand = int(i[0].attrib["strand"]) #identify between forward strand(1) and reverse strand(-1)
-
 
 # Mapping LRG coords to chromosomal coordinates (FORWARD STRAND)
 if strand == 1:
@@ -135,11 +119,11 @@ while count < len(chr_exon_start):
     chr_list.append("chr" + chromosome)
     count += 1
 
-
 # Creates a date/time stamp for creaton of BED file
 date = time.strftime("File created: %d/%m/%Y  %H:%M:%S\n\n")
 
 # Creation of output file named by gene name
+
 # Includes date/time stamp, column headers, followed by various columns of data
 
 header = "\tStart\t\tEnd\t\tExon\tLength\n" # headers for output text file
