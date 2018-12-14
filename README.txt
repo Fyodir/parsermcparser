@@ -19,6 +19,9 @@ Instructions for use:
     - You will be prompted with the "Please enter LRG number: " request
     - Enter LRG number of desired query gene [enter]
 
+    - view the outputted BED file via either a text editor (ie gedit, nano) or
+      call the name of the file using bash cmd "cat"
+
 Example Input Sequence:
     "python3 fancyparser.py" [enter]
     Please enter LRG number: 39 [enter]

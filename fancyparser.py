@@ -11,7 +11,7 @@ import requests
 input_lrg = input("Please enter LRG number: ")
 
 #Assert to ensure only positive integers are entered by the user
-assert input_lrg.isdigit(), "You must enter a positive integer"
+assert input_lrg.isdigit(), "Please provide a singular positive integer"
 
 url = 'http://ftp.ebi.ac.uk/pub/databases/lrgex/LRG_%s.xml' % input_lrg
 r = requests.get(url, allow_redirects=True)
