@@ -10,14 +10,16 @@ import requests
 
 input_lrg = input("Please enter LRG number: ")
 
-#Assert to ensure only positive integers are entered by the user
-assert input_lrg.isdigit(), "Please provide a singular positive integer"
+def lrg_input(input_lrg):
+    #Assert to ensure only positive integers are entered by the user
+    assert input_lrg.isdigit(), "Please provide a singular positive integer"
+    url = 'http://ftp.ebi.ac.uk/pub/databases/lrgex/LRG_%s.xml' % input_lrg
+    r = requests.get(url, allow_redirects=True)
+    open('LRG_%s.xml' % input_lrg, 'wb').write(r.content)
+    fileName = open('LRG_%s.xml' % input_lrg, 'r')
+    return fileName
 
-url = 'http://ftp.ebi.ac.uk/pub/databases/lrgex/LRG_%s.xml' % input_lrg
-r = requests.get(url, allow_redirects=True)
-open('LRG_%s.xml' % input_lrg, 'wb').write(r.content)
-
-fileName = open('LRG_%s.xml' % input_lrg, 'r')
+fileName = lrg_input(input_lrg)
 
 # Inputting XML file
 tree = ET.parse(fileName)
