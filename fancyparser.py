@@ -113,11 +113,6 @@ else: # Mapping of LRG coordinates to chromosomal locations (REVERSE STRAND)
     for coord in lrg_end_list:
         chr_exon_end.append(gene_chr_end - coord + 1)
 
-if strand == 1:
-    strand = "Forward Strand\n\n"
-else:
-    strand = "Reverse Strand\n\n"
-
 # pulls chromosome number from input LRG_xml
 chr_list = []
 count = 0
@@ -129,6 +124,10 @@ def output_bed(strand, chr_list, chr_exon_start, chr_exon_end, exon_num_var, exo
     # Creation of output BED file named by LRG # followed by gene name
     date = time.strftime("File created: %d/%m/%Y  %H:%M:%S\n\n") # Creates a date/time stamp for creaton of BED file
     header = "\tStart\t\tEnd\t\tExon\tLength\n" # headers for output text file
+    if strand == 1:
+        strand = "Forward Strand\n\n"
+    else:
+        strand = "Reverse Strand\n\n"
     with open('%s.bed' % gene, 'w+') as file_temp:
         file_temp.write(date)
         file_temp.write(strand)
