@@ -42,7 +42,7 @@ def exon_num(root):
                     elif (str(i.attrib))[-6] == "'":
                         exon_num_list.append((str(i.attrib))[-5:-2]) # returns exons 100 - 999
                     else:
-                        print("Something is wrong with the XML file")
+                        print("Incorrectly formatted file. Is this an XML?")
     return(exon_num_list)
 
 exon_num_var = np.asarray(exon_num(root))
@@ -64,14 +64,18 @@ def exon_coord(root):
 start_list_str, end_list_str = map(list, zip(exon_coord(root)))
 
 # Converts start_list_str and end_list_str to integer values
-lrg_start_list = []
-lrg_end_list = []
 
-for i in start_list_str[0]:
-    lrg_start_list.append(int(i))
+def list_conversion_str2int(list_a, list_b):
+    output_list_a = []
+    output_list_b = []
+    for i in list_a[0]:
+        output_list_a.append(int(i))
+    for i in list_b[0]:
+        output_list_b.append(int(i))
+    return output_list_a, output_list_b
 
-for i in end_list_str[0]:
-    lrg_end_list.append(int(i))
+lrg_start_list, lrg_end_list = list_conversion_str2int(start_list_str, end_list_str)
+
 
 # function to calculate exon lengths
 def exon_len_func(a,b):
