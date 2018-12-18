@@ -8,7 +8,7 @@ from operator import sub
 import time
 import requests
 
-
+#function to use user input to pull LRG XML from  LRG website and create local XML file for parsing
 def lrg_input(input_lrg):
     #Assert to ensure only positive integers are entered by the user
     assert input_lrg.isdigit(), "Please provide a singular positive integer"
