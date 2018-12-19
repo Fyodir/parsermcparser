@@ -18,11 +18,20 @@ def lrg_input(input_lrg):
     fileName = open('LRG_%s.xml' % input_lrg, 'r')
     return fileName
 
-#generates parsable tree of input XML file
+#generates parsable tree of input XML file.
+#Terminates program and informs the user if LRG is under creation
 def tree_generation(fileName):
-    tree = ET.parse(fileName)
-    root = tree.getroot()
-    return tree, root
+    x = 0
+    while True and x == 0:
+        try:
+            tree = ET.parse(fileName)
+            root = tree.getroot()
+            return tree, root
+            x += 1
+        except SyntaxError:
+            print("Gene under curation Unable to create .bed file")
+            x += 1
+            sys.exit()
 
 #acquires the name of the gene for use in .bed file naming
 def gene_name(tree):
