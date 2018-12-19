@@ -18,6 +18,13 @@ def lrg_input(input_lrg):
     fileName = open('LRG_%s.xml' % input_lrg, 'r')
     return fileName
 
+#generates parsable tree of input XML file
+def tree_generation(fileName):
+    tree = ET.parse(fileName)
+    root = tree.getroot()
+    return tree, root
+
+#acquires the name of the gene for use in .bed file naming
 def gene_name(tree):
     for gene_name in tree.findall('.//lrg_locus'):
         gene = 'LRG' + '_' + str(input_lrg) + "_" + gene_name.text
@@ -66,14 +73,15 @@ def list_conversion_str2int(list_a, list_b):
     return output_list_a, output_list_b
 
 # function to calculate exon lengths
-def exon_len_func(a,b):
+def exon_len_func(lrg_start,lrg_end):
     exon_len = []
     exon_len_count = 0
-    for i in a:
-        exon_len.append(b[exon_len_count]-a[exon_len_count])
+    for i in lrg_start:
+        exon_len.append(lrg_end[exon_len_count]-lrg_start[exon_len_count])
         exon_len_count += 1
     return exon_len
 
+#pulls various values from the inputted XML file
 def tree_values(tree):
     for i in tree.findall('.//mapping'):
         if i.attrib["coord_system"] == "GRCh37.p13":
@@ -111,14 +119,15 @@ def chrom_num(chr_exon_start):
         count += 1
     return chr_list
 
+# Creation of output BED file named by LRG # followed by gene name
 def output_bed(strand, chr_list, chr_exon_start, chr_exon_end, exon_num_var, exon_len):
-    # Creation of output BED file named by LRG # followed by gene name
     date = time.strftime("File created: %d/%m/%Y  %H:%M:%S\n\n") # Creates a date/time stamp for creaton of BED file
     header = "\tStart\t\tEnd\t\tExon\tLength\n" # headers for output text file
     if strand == 1:
         strand = "Forward Strand\n\n"
     else:
         strand = "Reverse Strand\n\n"
+    #writes generated values to the output .bed file
     with open('%s.bed' % gene, 'w+') as file_temp:
         file_temp.write(date)
         file_temp.write(strand)
@@ -126,12 +135,12 @@ def output_bed(strand, chr_list, chr_exon_start, chr_exon_end, exon_num_var, exo
         for (chr_list, chr_exon_start, chr_exon_end, exon_num_var, exon_len) in zip(chr_list, chr_exon_start, chr_exon_end, exon_num_var, exon_len):
             file_temp.write("{0}\t{1}\t{2}\t{3}\t{4}\n".format(chr_list, chr_exon_start, chr_exon_end, exon_num_var, exon_len))
 
+#if the program is run as the __main__ program an output .bed is generated
+#allows for use of the above functions in testing processes or external programs
 if __name__ == "__main__":
     input_lrg = input("Please enter LRG number: ")
     fileName = lrg_input(input_lrg)
-    # Inputting XML file
-    tree = ET.parse(fileName)
-    root = tree.getroot()
+    tree, root = tree_generation(fileName)
     gene, exon_num_var = gene_name(tree)
     start_list_str, end_list_str = map(list, zip(exon_coord(root)))
     lrg_start_list, lrg_end_list = list_conversion_str2int(start_list_str, end_list_str)
