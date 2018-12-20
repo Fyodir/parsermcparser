@@ -18,20 +18,30 @@ def lrg_input(input_lrg):
     fileName = open('LRG_%s.xml' % input_lrg, 'r')
     return fileName
 
+def pending_lrg_input(input_lrg):
+    #Assert to ensure only positive integers are entered by the user
+    assert input_lrg.isdigit(), "Please provide a singular positive integer"
+    url = 'http://ftp.ebi.ac.uk/pub/databases/lrgex/pending/LRG_%s.xml' % input_lrg
+    r = requests.get(url, allow_redirects=True)
+    open('LRG_%s.xml' % input_lrg, 'wb').write(r.content)
+    fileName = open('LRG_%s.xml' % input_lrg, 'r')
+    return fileName
+
 #generates parsable tree of input XML file.
-#Terminates program and informs the user if LRG is under creation
+#Pulls whether the LRG is either currently "Published" or "Under Creation"
 def tree_generation(fileName):
-    x = 0
-    while True and x == 0:
+    while True:
         try:
             tree = ET.parse(fileName)
             root = tree.getroot()
-            return tree, root
-            x += 1
+            curation = 'Curation Status: LRG Published\n\n'
+            return tree, root, curation
         except SyntaxError:
-            print("Gene under curation Unable to create .bed file")
-            x += 1
-            sys.exit()
+            fileName = pending_lrg_input(input_lrg)
+            tree = ET.parse(fileName)
+            root = tree.getroot()
+            curation = 'Curation Status: Gene Under Curation\n\n'
+            return tree, root, curation
 
 #acquires the name of the gene for use in .bed file naming
 def gene_name(tree):
@@ -130,7 +140,7 @@ def chrom_num(chr_exon_start):
 
 # Creation of output BED file named by LRG # followed by gene name
 def output_bed(strand, chr_list, chr_exon_start, chr_exon_end, exon_num_var, exon_len):
-    date = time.strftime("File created: %d/%m/%Y  %H:%M:%S\n\n") # Creates a date/time stamp for creaton of BED file
+    date = time.strftime("File created: %d/%m/%Y  %H:%M:%S\n") # Creates a date/time stamp for creaton of BED file
     header = "\tStart\t\tEnd\t\tExon\tLength\n" # headers for output text file
     if strand == 1:
         strand = "Forward Strand\n\n"
@@ -139,6 +149,7 @@ def output_bed(strand, chr_list, chr_exon_start, chr_exon_end, exon_num_var, exo
     #writes generated values to the output .bed file
     with open('%s.bed' % gene, 'w+') as file_temp:
         file_temp.write(date)
+        file_temp.write(curation)
         file_temp.write(strand)
         file_temp.write(header)
         for (chr_list, chr_exon_start, chr_exon_end, exon_num_var, exon_len) in zip(chr_list, chr_exon_start, chr_exon_end, exon_num_var, exon_len):
@@ -149,7 +160,7 @@ def output_bed(strand, chr_list, chr_exon_start, chr_exon_end, exon_num_var, exo
 if __name__ == "__main__":
     input_lrg = input("Please enter LRG number: ")
     fileName = lrg_input(input_lrg)
-    tree, root = tree_generation(fileName)
+    tree, root, curation = tree_generation(fileName)
     gene, exon_num_var = gene_name(tree)
     start_list_str, end_list_str = map(list, zip(exon_coord(root)))
     lrg_start_list, lrg_end_list = list_conversion_str2int(start_list_str, end_list_str)
