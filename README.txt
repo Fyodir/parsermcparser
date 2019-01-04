@@ -14,7 +14,7 @@ Required python3 modules:
     - numpy
     - operator (sub)
     - time
-    - requests
+    - requests 
 
 Input:
     - use input of desired LRG number
