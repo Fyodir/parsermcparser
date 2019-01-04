@@ -8,6 +8,14 @@ Please note - This program is designed at this time to only work with the GRCh37
 Utilises a user input to extract an LRG.xml file from the LRG website for use in generating
 a BED file, rather than requiring the xml file to already be located within the "parsermcparser" directory
 
+Required python3 modules:
+    - ElementTree
+    - sys
+    - numpy
+    - operator (sub)
+    - time
+    - requests
+
 Input:
     - use input of desired LRG number
 
