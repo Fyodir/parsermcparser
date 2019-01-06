@@ -8,9 +8,9 @@ from operator import sub
 import time
 import requests
 
-#function to use user input to pull LRG XML from  LRG website and create local XML file for parsing
+# function to use user input to pull LRG XML from  LRG website and create local XML file for parsing
 def lrg_input(input_lrg):
-    #Assert to ensure only positive integers are entered by the user
+    # assert to ensure only positive integers are entered by the user
     assert input_lrg.isdigit(), "Please provide a singular positive integer"
     url = 'http://ftp.ebi.ac.uk/pub/databases/lrgex/LRG_%s.xml' % input_lrg
     r = requests.get(url, allow_redirects=True)
@@ -19,7 +19,7 @@ def lrg_input(input_lrg):
     return fileName
 
 def pending_lrg_input(input_lrg):
-    #Assert to ensure only positive integers are entered by the user
+    # assert to ensure only positive integers are entered by the user
     assert input_lrg.isdigit(), "Please provide a singular positive integer"
     url = 'http://ftp.ebi.ac.uk/pub/databases/lrgex/pending/LRG_%s.xml' % input_lrg
     r = requests.get(url, allow_redirects=True)
@@ -27,8 +27,8 @@ def pending_lrg_input(input_lrg):
     fileName = open('LRG_%s.xml' % input_lrg, 'r')
     return fileName
 
-#generates parsable tree of input XML file.
-#Pulls whether the LRG is either currently "Published" or "Under Creation"
+# generates parsable tree of input XML file.
+# pulls whether the LRG is either currently "Published" or "Under Creation"
 def tree_generation(fileName):
     while True:
         try:
@@ -43,7 +43,7 @@ def tree_generation(fileName):
             curation = 'Curation Status: Gene Under Curation\n\n'
             return tree, root, curation
 
-#acquires the name of the gene for use in .bed file naming
+# acquires the name of the gene for use in .bed file naming
 def gene_name(tree):
     for gene_name in tree.findall('.//lrg_locus'):
         gene = 'LRG' + '_' + str(input_lrg) + "_" + gene_name.text
@@ -104,10 +104,10 @@ def exon_len_func(lrg_start,lrg_end):
 def tree_values(tree):
     for i in tree.findall('.//mapping'):
         if i.attrib["coord_system"] == "GRCh37.p13":
-            chromosome = i.attrib["other_name"] # Pulls chromosome number from XML
-            gene_chr_start = int(i[0].attrib["other_start"]) #for loop to obtain start coords of gene on GRCh37.p13
-            gene_chr_end = int(i[0].attrib["other_end"]) #for loop to obtain end coords of gene on GRCh37.p13
-            strand = int(i[0].attrib["strand"]) #identify between forward strand(1) and reverse strand(-1)
+            chromosome = i.attrib["other_name"] # pulls chromosome number from XML
+            gene_chr_start = int(i[0].attrib["other_start"]) # for loop to obtain start coords of gene on GRCh37.p13
+            gene_chr_end = int(i[0].attrib["other_end"]) # for loop to obtain end coords of gene on GRCh37.p13
+            strand = int(i[0].attrib["strand"]) # identify between forward strand(1) and reverse strand(-1)
     return chromosome, gene_chr_start, gene_chr_end, strand
 
 # Mapping LRG coords to chromosomal coordinates (FORWARD STRAND)
@@ -146,7 +146,7 @@ def output_bed(strand, chr_list, chr_exon_start, chr_exon_end, exon_num_var, exo
         strand = "Forward Strand\n\n"
     else:
         strand = "Reverse Strand\n\n"
-    #writes generated values to the output .bed file
+    # writes generated values to the output .bed file
     with open('%s.bed' % gene, 'w+') as file_temp:
         file_temp.write(date)
         file_temp.write(curation)
@@ -155,8 +155,8 @@ def output_bed(strand, chr_list, chr_exon_start, chr_exon_end, exon_num_var, exo
         for (chr_list, chr_exon_start, chr_exon_end, exon_num_var, exon_len) in zip(chr_list, chr_exon_start, chr_exon_end, exon_num_var, exon_len):
             file_temp.write("{0}\t{1}\t{2}\t{3}\t{4}\n".format(chr_list, chr_exon_start, chr_exon_end, exon_num_var, exon_len))
 
-#if the program is run as the __main__ program an output .bed is generated
-#allows for use of the above functions in testing processes or external programs
+# if the program is run as the __main__ program an output .bed is generated
+# allows for use of the above functions in testing processes or external programs
 if __name__ == "__main__":
     input_lrg = input("Please enter LRG number: ")
     fileName = lrg_input(input_lrg)
