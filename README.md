@@ -9,7 +9,7 @@ An XML parser in Python for producing a .bed file from an LRG_xml file obtained 
 - **Jethro Rainford**
 
 <br/>
-<br/>
+
 Development start date: 27th November 2018.
 
 ## Prerequisites
@@ -25,7 +25,7 @@ Development start date: 27th November 2018.
 
 ## Usage
 
-#### fancyparser.py
+### fancyparser.py
 
 Utilises a user input to extract an LRG.xml file from the LRG website for use in generating
 a BED file, rather than requiring the xml file to already be located within the "parsermcparser" directory
@@ -53,9 +53,9 @@ Please enter LRG number: 39 [enter]
 ```
 <br/>
 
-#### parserv1.py
+### parserv1.py
 
-(Original working version of the LRG XML parsing program)
+*(Original working version of the LRG XML parsing program)*
 
 Target XML file must be located within the ```/parsermcparser``` file directory
 
