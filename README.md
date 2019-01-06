@@ -20,6 +20,7 @@ Development start date: 27th November 2018.
     - elementTree (from XML library)
     - time
     - numpy
+    - requests
 - Working internet connection 
 
 

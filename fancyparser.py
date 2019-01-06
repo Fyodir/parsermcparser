@@ -1,10 +1,13 @@
-# An XML parser in Python for reading an LRG file in .xml format and exporting exons coordinates
+'''
+An XML parser in Python for reading an LRG file in .xml format and exporting exons coordinates
+Authors: Andrew Smith and Jethro Rainford
+Development start date: 27th November 2018
+Usage: refer to the README file
+'''
 
 # importing required modules
 import xml.etree.ElementTree as ET
-import sys
 import numpy as np
-from operator import sub
 import time
 import requests
 
@@ -91,7 +94,7 @@ def list_conversion_str2int(list_a, list_b):
         output_list_b.append(int(i))
     return output_list_a, output_list_b
 
-# function to calculate exon lengths
+# Function to calculate exon lengths
 def exon_len_func(lrg_start,lrg_end):
     exon_len = []
     exon_len_count = 0
@@ -100,7 +103,7 @@ def exon_len_func(lrg_start,lrg_end):
         exon_len_count += 1
     return exon_len
 
-#pulls various values from the inputted XML file
+# Pulls various values from the inputted XML file
 def tree_values(tree):
     for i in tree.findall('.//mapping'):
         if i.attrib["coord_system"] == "GRCh37.p13":
