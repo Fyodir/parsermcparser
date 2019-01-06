@@ -1,4 +1,5 @@
-####An XML parser in Python for producing a .bed file from an LRG_xml file obtained from the LRG-Sequence website "https://www.lrg-sequence.org/index.html"
+#### An XML parser in Python for producing a .bed file from an LRG_xml file obtained from the LRG-Sequence website "https://www.lrg-sequence.org/index.html"
+
 
 Please note - This program is designed at this time to only work with the GRCh37.p13 Human Reference Genome build
 
