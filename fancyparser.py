@@ -21,6 +21,7 @@ def lrg_input(input_lrg):
     fileName = open('LRG_%s.xml' % input_lrg, 'r')
     return fileName
 
+# alternative function to pull LRG XML from LRG website and create local XML if currently "Under Curation"
 def pending_lrg_input(input_lrg):
     # assert to ensure only positive integers are entered by the user
     assert input_lrg.isdigit(), "Please provide a singular positive integer"
