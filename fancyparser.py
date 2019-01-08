@@ -1,5 +1,6 @@
 '''
 An XML parser in Python for reading an LRG file in .xml format and exporting exons coordinates
+
 Authors: Andrew Smith and Jethro Rainford
 Development start date: 27th November 2018
 Usage: refer to the README file
