@@ -21,7 +21,7 @@ Development start date: 27th November 2018.
     - time
     - numpy
     - requests
-- Working internet connection 
+- Working internet connection
 
 
 ## Usage
@@ -84,4 +84,4 @@ python3 parserv1 ./LRG_391.xml [enter]
 
 - The correct functioning of the parser was determined by the use of assert statements and error generation throughout the code.
 - Modified faulty test XML files were used to ensure functioning of test features
-- Assert statements have been included to reject incorrect file types, multiple input LRG numbers, incorrectly formatted / damaged XML files and LRG files that are "under curation"
+- Assert statements have been included to reject incorrect file types, multiple input LRG numbers, incorrectly formatted / damaged XML files
