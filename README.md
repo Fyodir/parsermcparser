@@ -21,6 +21,7 @@ Development start date: 27th November 2018.
     - time
     - numpy
     - requests
+    - pytest (for testing)
 - Working internet connection
 
 
@@ -44,7 +45,8 @@ use input of desired LRG number
 
 - Navigate to the ```/parsermcparser``` directory on the bash terminal
 - Run the cmd line `````"python3 fancyparser.py" [enter]`````
-- You will be prompted with the `````Please enter LRG number: ``` request - Enter LRG number of desired query gene [enter]
+- You will be prompted with the `````Please enter LRG number: ``` request
+- Enter LRG number of desired query gene [enter]
 - view the outputted BED file via either a text editor (ie gedit, nano) or call the name of the file using bash cmd "cat"
 
 ##### Example Input Sequence:
@@ -85,3 +87,12 @@ python3 parserv1 ./LRG_391.xml [enter]
 - The correct functioning of the parser was determined by the use of assert statements and error generation throughout the code.
 - Modified faulty test XML files were used to ensure functioning of test features
 - Assert statements have been included to reject incorrect file types, multiple input LRG numbers, incorrectly formatted / damaged XML files
+
+### pytest
+The module "pytest" was used to test the functionality of the code and to ensure that each function works as intended.
+
+A second .py file ```test_fancyparser.py``` exists within this package that contains a number of functions used in conjunction with the pytest module to ensure the correct functionality of the functions contained within the ```fancyparser.py``` script
+
+#### Instructions:
+- Ensure a copy of the ```LRG_1.xml``` file exists locally, directly  within the ```/parsermcparser``` directory
+- Run the cmd ```pytest``` from the bash cmd line when positioned within the ```/parsermcparser``` directory
