@@ -1,4 +1,4 @@
-# Ensure a local copy of "LRG_1.xml" exists before running pytest to ensure correct functionality of this script
+# Ensure a local copy of "LRG_1.xml" exists before runinig pytest to ensure correct functionality of this script
 
 import xml.etree.ElementTree as ET
 import numpy as np
@@ -7,10 +7,15 @@ import requests
 
 import fancyparser as fp
 
-# Correct file type, naming convention, and r/w mode produced
+# Correct naming convention, r/w mode, and filetype of outputted file
 def test_lrg_input():
     input_lrg = '1'
     assert str(fp.lrg_input(input_lrg)) == "<_io.TextIOWrapper name='LRG_1.xml' mode='r' encoding='UTF-8'>"
+
+# Correct naming convention, r/w mode, and filetype of outputted file
+def test_pending_lrg_input():
+    input_lrg = '14'
+    assert str(fp.pending_lrg_input(input_lrg)) == "<_io.TextIOWrapper name='LRG_14.xml' mode='r' encoding='UTF-8'>"
 
 fileName = 'LRG_1.xml'
 tree = ET.parse(fileName)
@@ -33,3 +38,15 @@ def test_tree_values():
     assert gene_chr_start == 48259457
     assert gene_chr_end == 48284000
     assert strand == -1
+
+"""
+Remaining test functions to create:
+    tree_generation
+    gene_name
+    exon_num
+    exon_coord
+    exon_len_func
+    strand_pos_neg
+    chrom_num
+    output_bed
+"""
