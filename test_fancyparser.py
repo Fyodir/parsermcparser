@@ -1,3 +1,5 @@
+# Ensure a locl copy of "LRG_1.xml" exists before runinig pytest to ensure correct functionality of this script
+
 import xml.etree.ElementTree as ET
 import numpy as np
 import time
