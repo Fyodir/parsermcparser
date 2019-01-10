@@ -1,4 +1,3 @@
-import pytest
 import xml.etree.ElementTree as ET
 import numpy as np
 import time
@@ -6,8 +5,12 @@ import requests
 
 import fancyparser as fp
 
-fileName = 'LRG_1.xml'
+# Correct file type, naming convention, and r/w mode produced
+def test_lrg_input():
+    input_lrg = '1'
+    assert str(fp.lrg_input(input_lrg)) == "<_io.TextIOWrapper name='LRG_1.xml' mode='r' encoding='UTF-8'>"
 
+fileName = 'LRG_1.xml'
 tree = ET.parse(fileName)
 root = tree.getroot()
 
