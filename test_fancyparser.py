@@ -36,6 +36,17 @@ def test_exon_num():
     assert fp.exon_num(root) == result
 
 
+def test_exon_coord():
+    # assert len(fp.exon_coord(root)) == 2
+    assert len(fp.exon_coord(root)[0]) == len(fp.exon_coord(root)[1])
+    lst = []
+    for a in fp.exon_coord(root)[1] + fp.exon_coord(root)[1]:
+        lst.append(int(a))
+    for a in lst:
+        assert str(type(a)) == "<class 'int'>"
+
+
+
 # conversion of affixed lists of strings to seperate lists of integers
 def test_list_conversion_str2int():
     list_a = [[str(i) for i in range(20) if i %2 ==1]]
@@ -61,7 +72,7 @@ Remaining test functions to create:
     tree_generation                 DONE
     gene_name
     exon_num                        DONE
-    exon_coord
+    exon_coord                      DONE
     test_list_conversion_str2int    DONE
     exon_len_func
     tree_values                     DONE
