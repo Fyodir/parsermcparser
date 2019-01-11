@@ -8,7 +8,6 @@ Usage: refer to the README file
 
 # Importing required modules
 import xml.etree.ElementTree as ET
-import numpy as np
 import time
 import requests
 
@@ -56,7 +55,7 @@ def tree_generation(fileName):
 def gene_name(tree: object) -> object:
     for gene_name in tree.findall('.//lrg_locus'):
         gene = 'LRG' + '_' + str(input_lrg) + "_" + gene_name.text
-        exon_num_var = np.asarray(exon_num(root))
+        exon_num_var = nexon_num(root)
     return gene, exon_num_var
 
 
