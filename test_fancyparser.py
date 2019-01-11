@@ -1,15 +1,13 @@
 # Ensure a local copy of "LRG_1.xml" exists before runinig pytest to ensure correct functionality of this script
 
 import xml.etree.ElementTree as ET
-import numpy as np
-import time
-import requests
-
 import fancyparser as fp
+
+fileName = 'LRG_1.xml'
+input_lrg = '1'
 
 # Correct naming convention, r/w mode, and filetype of outputted file
 def test_lrg_input():
-    input_lrg = '1'
     assert str(fp.lrg_input(input_lrg)) == "<_io.TextIOWrapper name='LRG_1.xml' mode='r' encoding='UTF-8'>"
 
 # Correct naming convention, r/w mode, and filetype of outputted file
@@ -17,9 +15,26 @@ def test_pending_lrg_input():
     input_lrg = '14'
     assert str(fp.pending_lrg_input(input_lrg)) == "<_io.TextIOWrapper name='LRG_14.xml' mode='r' encoding='UTF-8'>"
 
-fileName = 'LRG_1.xml'
+def test_tree_generation():
+    tree, root, curation = fp.tree_generation(fileName)
+    tree = str(tree)
+    root = str(root)
+    curation = str(curation)
+    assert tree.startswith("<xml.etree.ElementTree.ElementTree object at ")
+    assert root.startswith("<Element 'lrg' at ")
+    assert curation == "Curation Status: LRG Published" or "Curation Status: Gene Under Curation"
+
 tree = ET.parse(fileName)
 root = tree.getroot()
+
+# def test_gene_name():
+#     gene, exon_num_var = fp.gene_name(tree)
+#     assert gene == "LRG_1_COL1A1"
+
+def test_exon_num():
+    result = [str(i+1) for i in range(51)]
+    assert fp.exon_num(root) == result
+
 
 # conversion of affixed lists of strings to seperate lists of integers
 def test_list_conversion_str2int():
@@ -41,11 +56,15 @@ def test_tree_values():
 
 """
 Remaining test functions to create:
-    tree_generation
+    lrg_input                       DONE
+    pending_lrg_input               DONE
+    tree_generation                 DONE
     gene_name
-    exon_num
+    exon_num                        DONE
     exon_coord
+    test_list_conversion_str2int    DONE
     exon_len_func
+    tree_values                     DONE
     strand_pos_neg
     chrom_num
     output_bed
