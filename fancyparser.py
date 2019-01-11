@@ -52,7 +52,7 @@ def tree_generation(fileName):
 
 
 # Acquires the name of the gene for use in .bed file naming
-def gene_name(tree: object) -> object:
+def gene_name(tree):
     for gene_name in tree.findall('.//lrg_locus'):
         gene = 'LRG' + '_' + str(input_lrg) + "_" + gene_name.text
         exon_num_var = nexon_num(root)
