@@ -17,15 +17,18 @@ Development start date: 27th November 2018.
 
 - Python (3.x.x)
 - Modules
-    - elementTree (from XML library)
-    - time
-    - numpy
-    - requests
-    - pytest (for testing)
+    - elementTree (from XML library) (Standard Library)
+    - time (Standard Library)
+    - numpy (1.15.4)
+    - requests (2.21.0)
+    - pytest (for testing) (4.1.0)
 - Working internet connection
 
+---
 
 ## Usage
+
+First run the `pip install -r requirements.txt` to ensure that all correct modules are installed on your system prior to use of the `fancyparser.py` program. If the required modules are not present, the prior command will install them onto your system
 
 ### fancyparser.py
 
@@ -34,7 +37,7 @@ a BED file, rather than requiring the xml file to already be located within the 
 
 ##### Input:
 
-use input of desired LRG number
+Use input of desired LRG number
 
 ##### Output:
 
@@ -44,10 +47,10 @@ use input of desired LRG number
 ##### Instructions for use:
 
 - Navigate to the ```/parsermcparser``` directory on the bash terminal
-- Run the cmd line `````"python3 fancyparser.py" [enter]`````
-- You will be prompted with the `````Please enter LRG number: ``` request
-- Enter LRG number of desired query gene [enter]
-- view the outputted BED file via either a text editor (ie gedit, nano) or call the name of the file using bash cmd "cat"
+- Run the cmd line `````python3 fancyparser.py`````
+- You will be prompted with the ```Please enter LRG number: ``` request
+- Enter LRG number of desired query gene
+- View the outputted BED file via either a text editor (ie gedit, nano) or call the name of the file using bash cmd "cat"
 
 ##### Example Input Sequence:
 ```
@@ -56,9 +59,11 @@ Please enter LRG number: 39 [enter]
 ```
 <br/>
 
+---
+
 ### parserv1.py
 
-*(Original working version of the LRG XML parsing program)*
+*(Retired original working version of the LRG XML parsing program)*
 
 Target XML file must be located within the ```/parsermcparser``` file directory
 
@@ -82,6 +87,8 @@ python3 parserv1 ./LRG_391.xml [enter]
 ```
 <br/>
 
+---
+
 ## Testing
 
 - The correct functioning of the parser was determined by the use of assert statements and error generation throughout the code.
@@ -91,7 +98,7 @@ python3 parserv1 ./LRG_391.xml [enter]
 ### pytest
 The module "pytest" was used to test the functionality of the code and to ensure that each function works as intended.
 
-A second .py file ```test_fancyparser.py``` exists within this package that contains a number of functions used in conjunction with the pytest module to ensure the correct functionality of the functions contained within the ```fancyparser.py``` script
+A second `.py` file ```test_fancyparser.py``` exists within this package that when used in conjunction with the pytest module ensures the correct functionality of the ```fancyparser.py``` script
 
 #### Instructions:
 - Ensure a copy of the ```LRG_1.xml``` file exists locally, directly  within the ```/parsermcparser``` directory
