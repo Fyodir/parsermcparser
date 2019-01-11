@@ -55,7 +55,7 @@ def tree_generation(fileName):
 def gene_name(tree):
     for gene_name in tree.findall('.//lrg_locus'):
         gene = 'LRG' + '_' + str(input_lrg) + "_" + gene_name.text
-        exon_num_var = nexon_num(root)
+        exon_num_var = exon_num(root)
     return gene, exon_num_var
 
 
