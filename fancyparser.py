@@ -39,13 +39,13 @@ def tree_generation(fileName):
         try:
             tree = ET.parse(fileName)
             root = tree.getroot()
-            curation = 'Curation Status: LRG Published\n\n'
+            curation = 'Curation Status: LRG Published\n'
             return tree, root, curation
         except SyntaxError:
             fileName = pending_lrg_input(input_lrg)
             tree = ET.parse(fileName)
             root = tree.getroot()
-            curation = 'Curation Status: Gene Under Curation\n\n'
+            curation = 'Curation Status: Gene Under Curation\n'
             return tree, root, curation
 
 # acquires the name of the gene for use in .bed file naming
@@ -148,9 +148,9 @@ def output_bed(strand, chr_list, chr_exon_start, chr_exon_end, exon_num_var, exo
     date = time.strftime("File created: %d/%m/%Y  %H:%M:%S\n") # Creates a date/time stamp for creaton of BED file
     header = "\tStart\t\tEnd\t\tExon\tLength\n" # headers for output text file
     if strand == 1:
-        strand = "Forward Strand\n\n"
+        strand = "Strand: Forward (+)\n\n"
     else:
-        strand = "Reverse Strand\n\n"
+        strand = "Strand: Reverse (-)\n\n"
     # writes generated values to the output .bed file
     with open('%s.bed' % gene, 'w+') as file_temp:
         file_temp.write(date)
