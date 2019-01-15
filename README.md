@@ -1,6 +1,7 @@
 ## XML Parser for LRG files
 
-An XML parser in Python for producing a .bed file from an LRG_xml file obtained from the LRG-Sequence website "https://www.lrg-sequence.org/index.html"
+An XML parser in Python for producing a .bed file from an LRG_xml file obtained from the LRG-Sequence website 
+"https://www.lrg-sequence.org"
 
 *n.b. This program is designed at this time to only work with the GRCh37.p13 Human Reference Genome build*
 
@@ -19,7 +20,6 @@ Development start date: 27th November 2018.
 - Modules
     - elementTree (from XML library) (Standard Library)
     - time (Standard Library)
-    - numpy (1.15.4)
     - requests (2.21.0)
     - pytest (for testing) (4.1.0)
 - Working internet connection
@@ -28,7 +28,9 @@ Development start date: 27th November 2018.
 
 ## Usage
 
-First run the `pip install -r requirements.txt` to ensure that all correct modules are installed on your system prior to use of the `fancyparser.py` program. If the required modules are not present, the prior command will install them onto your system
+First run the `pip install -r requirements.txt` to ensure that all correct modules are installed on your system prior 
+to use of the `fancyparser.py` program. If the required modules are not present, the prior command will install them 
+onto your system
 
 ### fancyparser.py
 
@@ -49,10 +51,11 @@ Use input of desired LRG number
 - Navigate to the ```/parsermcparser``` directory on the bash terminal
 - Run the cmd line `````python3 fancyparser.py`````
 - You will be prompted with the ```Please enter LRG number: ``` request
-- Enter LRG number of desired query gene
+- Enter LRG number of desired query gene (LRG numbers for HGNC names may be found at: 
+    https://www.lrg-sequence.org/search/?query=*)
 - View the outputted BED file via either a text editor (ie gedit, nano) or call the name of the file using bash cmd "cat"
 
-##### Example Input Sequence:
+##### Example usage:
 ```
 python3 fancyparser.py [enter]
 Please enter LRG number: 39 [enter]
@@ -61,45 +64,29 @@ Please enter LRG number: 39 [enter]
 
 ---
 
-### parserv1.py
-
-*(Retired original working version of the LRG XML parsing program)*
-
-Target XML file must be located within the ```/parsermcparser``` file directory
-
-##### Input:
-
-pass input xml file to program as string input
-
-##### Output:
-
-.bed file of queried gene titled ```LRG_(LRG number here)_(HGNC nomenclature).bed```
-
-##### Instructions:
-- Ensure target LRG_xml file is located within the ```/parsermcparser``` directory
-- Naviagte to the ```/parsermcparser``` directory on the bash terminal
-- Run the cmd line ```python3 parserv1 (insert target xml file) [enter]```
-- A bed file will be created in the ```/parsermcparser``` directory titled: ```LRG_(LRG number here)_(HGNC nomenclature).bed```
-
-##### Example Input Sequence:
-```
-python3 parserv1 ./LRG_391.xml [enter]
-```
-<br/>
-
----
-
 ## Testing
 
-- The correct functioning of the parser was determined by the use of assert statements and error generation throughout the code.
+- The correct functioning of the parser was determined by the use of assert statements and error generation throughout 
+  the code.
 - Modified faulty test XML files were used to ensure functioning of test features
-- Assert statements have been included to reject incorrect file types, multiple input LRG numbers, incorrectly formatted / damaged XML files
+- Assert statements have been included to reject incorrect file types, multiple input LRG numbers, incorrectly formatted
+  / damaged XML files
+- The standard PyTest testing framework was also used to test the whole script for correct functioning (see below)
 
-### pytest
+### PyTest
 The module "pytest" was used to test the functionality of the code and to ensure that each function works as intended.
 
-A second `.py` file ```test_fancyparser.py``` exists within this package that when used in conjunction with the pytest module ensures the correct functionality of the ```fancyparser.py``` script
+The test files are located within a separate ```test_files``` directory.
 
-#### Instructions:
-- Ensure a copy of the ```LRG_1.xml``` file exists locally, directly  within the ```/parsermcparser``` directory
-- Run the cmd ```pytest``` from the bash cmd line when positioned within the ```/parsermcparser``` directory
+Usage:
+
+- Ensure you are within the ```test_files``` directory
+- Ensure both ```test_fancyparser.py``` and ```test.xml``` are present (test.xml is an unmodified copy of the LRG_1.xml,
+  renamed for clarity)
+- To invoke testing execute the command ```pytest -rpf```.
+- This will search within the directory for the test script and run on the ```test.xml``` file.
+- The flags ```-r``` (short summary), ```-p``` (passed) and ```-f``` (fail) are recommended to give a basic visual
+  output of the passed/failed tests 
+
+
+
