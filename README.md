@@ -52,7 +52,7 @@ Use input of desired LRG number
 - Run the cmd line `````python3 fancyparser.py`````
 - You will be prompted with the ```Please enter LRG number: ``` request
 - Enter LRG number of desired query gene (LRG numbers for HGNC names may be found at: 
-    https://www.lrg-sequence.org/search/?query=*)
+  https://www.lrg-sequence.org/search/?query=*)
 - View the outputted BED file via either a text editor (ie gedit, nano) or call the name of the file using bash cmd "cat"
 
 ##### Example usage:
@@ -74,7 +74,7 @@ Please enter LRG number: 39 [enter]
 - The standard PyTest testing framework was also used to test the whole script for correct functioning (see below)
 
 ### PyTest
-The module "pytest" was used to test the functionality of the code and to ensure that each function works as intended.
+The module "PyTest" was used to test the functionality of the code and to ensure that each function works as intended.
 
 The test files are located within a separate ```test_files``` directory.
 
@@ -86,7 +86,7 @@ Usage:
 - To invoke testing execute the command ```pytest -rpf```.
 - This will search within the directory for the test script and run on the ```test.xml``` file.
 - The flags ```-r``` (short summary), ```-p``` (passed) and ```-f``` (fail) are recommended to give a basic visual
-  output of the passed/failed tests 
+  output of the passed/failed tests, other variables may be found in the relevant ```man``` page
 
 
 

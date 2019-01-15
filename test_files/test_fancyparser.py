@@ -1,4 +1,7 @@
-
+'''
+PyTest script for testing the fancyparser.py LRG parser programme. To run the test the test.xml file must be present
+within the same directory. For full usage please refer to the README file.
+'''
 
 import sys
 import os
