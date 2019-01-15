@@ -22,6 +22,7 @@ def test_pending_lrg_input():
     input_lrg = '14'
     assert str(fp.pending_lrg_input(input_lrg)) == "<_io.TextIOWrapper name='LRG_14.xml' mode='r' encoding='UTF-8'>"
 
+# Assert correct ElementTree functions (tree, root) and variable (curation) are generated
 def test_tree_generation():
     tree, root, curation = fp.tree_generation(fileName)
     tree = str(tree)
@@ -62,6 +63,13 @@ def test_list_conversion_str2int():
     for b in output_list_b:
         assert str(type(b))[-5:-2] == 'int'
 
+# Ensure subtraction of each integer in list_b from the corresponding in list_a
+def test_exon_len_func():
+    list_a = [i for i in range(40) if i %2 ==1]
+    list_b = [i for i in range(40) if i %2 ==0]
+    assert fp.exon_len_func(list_b, list_a) == [1 for i in range(len(list_a))]
+    assert fp.exon_len_func(list_b, list_a) == [1 for i in range(len(list_b))]
+
 # testing of correct values to be returned upon parsing of the LRG XML file
 def test_tree_values():
     chromosome, gene_chr_start, gene_chr_end, strand = fp.tree_values(tree)
@@ -75,11 +83,11 @@ Remaining test functions to create:
     lrg_input                       DONE
     pending_lrg_input               DONE
     tree_generation                 DONE
-    gene_name
+    gene_name                       DONE
     exon_num                        DONE
     exon_coord                      DONE
     test_list_conversion_str2int    DONE
-    exon_len_func
+    exon_len_func                   DONE
     tree_values                     DONE
     strand_pos_neg
     chrom_num
