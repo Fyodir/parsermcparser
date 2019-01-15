@@ -1,10 +1,17 @@
-# Ensure a local copy of "LRG_1.xml" exists before runinig pytest to ensure correct functionality of this script
 
+
+import sys
+import os
+sys.path.append(os.path.abspath('../'))
 import xml.etree.ElementTree as ET
 import fancyparser as fp
 
-fileName = 'LRG_1.xml'
+fileName = 'test.xml'
 input_lrg = '1'
+fp.input_lrg = '1'
+tree = ET.parse(fileName)
+fp.root = tree.getroot()
+root = tree.getroot()
 
 # Correct naming convention, r/w mode, and filetype of outputted file
 def test_lrg_input():
@@ -24,12 +31,10 @@ def test_tree_generation():
     assert root.startswith("<Element 'lrg' at ")
     assert curation == "Curation Status: LRG Published" or "Curation Status: Gene Under Curation"
 
-tree = ET.parse(fileName)
-root = tree.getroot()
 
-# def test_gene_name():
-#     gene, exon_num_var = fp.gene_name(tree)
-#     assert gene == "LRG_1_COL1A1"
+def test_gene_name():
+    gene, exon_num_var = fp.gene_name(tree)
+    assert gene == 'LRG_1_COL1A1'
 
 def test_exon_num():
     result = [str(i+1) for i in range(51)]
