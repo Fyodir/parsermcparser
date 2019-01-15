@@ -36,18 +36,17 @@ def pending_lrg_input(input_lrg):
 # Generates parsable tree of input XML file.
 # Pulls whether the LRG is either currently "Published" or "Under Creation"
 def tree_generation(fileName):
-    while True:
-        try:
-            tree = ET.parse(fileName)
-            root = tree.getroot()
-            curation = 'Curation Status: LRG Published\n'
-            return tree, root, curation
-        except SyntaxError:
-            fileName = pending_lrg_input(input_lrg)
-            tree = ET.parse(fileName)
-            root = tree.getroot()
-            curation = 'Curation Status: Gene Under Curation\n'
-            return tree, root, curation
+    try:
+        tree = ET.parse(fileName)
+        root = tree.getroot()
+        curation = 'Curation Status: LRG Published\n'
+        return tree, root, curation
+    except SyntaxError:
+        fileName = pending_lrg_input(input_lrg)
+        tree = ET.parse(fileName)
+        root = tree.getroot()
+        curation = 'Curation Status: Gene Under Curation\n'
+        return tree, root, curation
 
 
 # Acquires the name of the gene for use in .bed file naming
@@ -188,6 +187,4 @@ if __name__ == "__main__":
     chromosome, gene_chr_start, gene_chr_end, strand = (tree_values(tree))
     chr_exon_start, chr_exon_end = strand_pos_neg(strand, lrg_start_list, lrg_end_list)
     chr_list = chrom_num(chr_exon_start, chromosome)
-    # print(chr_exon_start)
-    print(chr_list)
     output_bed(strand, chr_list, chr_exon_start, chr_exon_end, exon_num_var, exon_len)
