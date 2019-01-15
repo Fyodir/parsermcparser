@@ -32,11 +32,12 @@ def test_tree_generation():
     assert root.startswith("<Element 'lrg' at ")
     assert curation == "Curation Status: LRG Published" or "Curation Status: Gene Under Curation"
 
-
+#asert create gene name is pulled from XML
 def test_gene_name():
     gene, exon_num_var = fp.gene_name(tree)
     assert gene == 'LRG_1_COL1A1'
 
+# assert correct number of exons is calculated
 def test_exon_num():
     result = [str(i+1) for i in range(51)]
     assert fp.exon_num(root) == result
