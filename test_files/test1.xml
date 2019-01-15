@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="application/xml" href="lrg2html.xsl"?>
 
-
 <lrg schema_version="1.9">
   <fixed_annotation>
     <id>LRG_1</id>
@@ -350,7 +349,7 @@
           <email>raymond.dalgleish@le.ac.uk</email>
         </contact>
       </source>
-      <modification_date>2019-01-09</modification_date>
+      <modification_date>2019-01-14</modification_date>
     </annotation_set>
     <annotation_set type="lrg">
       <source>
@@ -362,7 +361,7 @@
           <email>feedback@lrg-sequence.org</email>
         </contact>
       </source>
-      <modification_date>2019-01-09</modification_date>
+      <modification_date>2019-01-14</modification_date>
       <mapping coord_system="GRCh37.p13" other_name="17" other_id="NC_000017.10" other_id_syn="CM000679.1" other_start="48259457" other_end="48284000" type="other_assembly">
         <mapping_span lrg_start="1" lrg_end="24544" other_start="48259457" other_end="48284000" strand="-1">
           <diff type="mismatch" lrg_start="18506" lrg_end="18506" other_start="48265495" other_end="48265495" lrg_sequence="G" other_sequence="A" />
@@ -384,7 +383,7 @@
         </contact>
       </source>
       <comment>Annotation from NG_007400.1</comment>
-      <modification_date>2019-01-08</modification_date>
+      <modification_date>2019-01-10</modification_date>
       <mapping coord_system="NM_000088.3" other_name="NM_000088.3" other_id="NM_000088.3" other_start="1" other_end="5927" type="transcript">
         <mapping_span lrg_start="5001" lrg_end="5229" other_start="1" other_end="229" strand="1" />
         <mapping_span lrg_start="6693" lrg_end="6887" other_start="230" other_end="424" strand="1" />
@@ -633,8 +632,8 @@
           <email>helpdesk@ensembl.org</email>
         </contact>
       </source>
-      <comment>Annotation is based on Ensembl release 94 (GRCh38  primary assembly)</comment>
-      <modification_date>2019-01-09</modification_date>
+      <comment>Annotation is based on Ensembl release 95 (GRCh38  primary assembly)</comment>
+      <modification_date>2019-01-14</modification_date>
       <mapping coord_system="ENST00000225964.9" other_name="ENST00000225964.9" other_id="ENST00000225964.9" other_start="1" other_end="6727" type="transcript">
         <mapping_span lrg_start="5008" lrg_end="5229" other_start="1" other_end="222" strand="1" />
         <mapping_span lrg_start="6693" lrg_end="6887" other_start="223" other_end="417" strand="1" />
@@ -765,15 +764,16 @@
           <symbol source="HGNC" name="COL1A1" />
           <coordinates coord_system="LRG_1" start="5008" end="23351" strand="1" mapped_from="GRCh38" />
           <long_name>collagen type I alpha 1 chain (protein_coding)</long_name>
-          <db_xref source="GeneID" accession="1277" />
+          <db_xref source="MIM" accession="120150" />
           <db_xref source="HGNC" accession="2197">
             <synonym>OI4</synonym>
           </db_xref>
-          <db_xref source="MIM" accession="120150" />
+          <db_xref source="GeneID" accession="1277" />
           <db_xref source="Ensembl" accession="ENSG00000108821" />
           <transcript source="Ensembl" accession="ENST00000225964.9" fixed_id="t1">
             <coordinates coord_system="LRG_1" start="5008" end="23351" strand="1" mapped_from="GRCh38" />
             <long_name>COL1A1-201 (protein_coding)</long_name>
+            <db_xref source="RefSeq" accession="NM_000088.3" />
             <exon source="Ensembl" accession="ENSE00003500023">
               <coordinates coord_system="LRG_1" start="5008" end="5229" strand="1" mapped_from="GRCh38" />
             </exon>
@@ -929,7 +929,6 @@
             </exon>
             <protein_product source="Ensembl" accession="ENSP00000225964.5" fixed_id="p1">
               <coordinates coord_system="LRG_1" start="5127" end="21138" strand="1" mapped_from="GRCh38" />
-              <long_name>collagen alpha-1(I) chain preproprotein</long_name>
               <db_xref source="RefSeq" accession="NP_000079.2" />
               <db_xref source="UniProtKB" accession="P02452" />
               <db_xref source="CCDS" accession="CCDS11561.1" />
@@ -1137,7 +1136,7 @@
       <source>
         <name>Community</name>
       </source>
-      <modification_date>2019-01-09</modification_date>
+      <modification_date>2019-01-14</modification_date>
       <fixed_transcript_annotation name="t1">
         <other_exon_naming description="Alternative numbering based on Osteogenesis Imperfecta Variant Database - COL1A1">
           <url>http://www.le.ac.uk/genetics/collagen/nomenclature.html#exon_numbering</url>
@@ -1357,7 +1356,7 @@
         <name>List of locus specific databases for COL1A1</name>
         <url>http://grenada.lumc.nl/LSDB_list/lsdbs/COL1A1</url>
       </source>
-      <modification_date>2019-01-09</modification_date>
+      <modification_date>2019-01-14</modification_date>
     </annotation_set>
   </updatable_annotation>
 </lrg>

@@ -1,29 +1,33 @@
-'''
-PyTest script for testing the fancyparser.py LRG parser programme. To run the test the test.xml file must be present
+"""
+PyTest script for testing the fancyparser.py LRG parser programme. To run the test the test1.xml file must be present
 within the same directory. For full usage please refer to the README file.
-'''
+"""
 
+# Importing required modules
 import sys
 import os
 sys.path.append(os.path.abspath('../'))
 import xml.etree.ElementTree as ET
 import fancyparser as fp
 
-fileName = 'test.xml'
+fileName = 'test1.xml'
 input_lrg = '1'
 fp.input_lrg = '1'
 tree = ET.parse(fileName)
 fp.root = tree.getroot()
 root = tree.getroot()
 
-# Correct naming convention, r/w mode, and filetype of outputted file
+
+# Correct naming convention, r/w mode, and file type of outputted file
 def test_lrg_input():
     assert str(fp.lrg_input(input_lrg)) == "<_io.TextIOWrapper name='LRG_1.xml' mode='r' encoding='UTF-8'>"
+
 
 # Correct naming convention, r/w mode, and filetype of outputted file
 def test_pending_lrg_input():
     input_lrg = '14'
     assert str(fp.pending_lrg_input(input_lrg)) == "<_io.TextIOWrapper name='LRG_14.xml' mode='r' encoding='UTF-8'>"
+
 
 # Assert correct ElementTree functions (tree, root) and variable (curation) are generated
 def test_tree_generation():
@@ -35,10 +39,12 @@ def test_tree_generation():
     assert root.startswith("<Element 'lrg' at ")
     assert curation == "Curation Status: LRG Published" or "Curation Status: Gene Under Curation"
 
+
 # Assert create gene name is pulled from XML
 def test_gene_name():
     gene, exon_num_var = fp.gene_name(tree)
     assert gene == 'LRG_1_COL1A1'
+
 
 # Assert correct number of exons is calculated
 def test_exon_num():
@@ -56,7 +62,6 @@ def test_exon_coord():
         assert str(type(a)) == "<class 'int'>"
 
 
-
 # Conversion of affixed lists of strings to seperate lists of integers
 def test_list_conversion_str2int():
     list_a = [[str(i) for i in range(20) if i %2 ==1]]
@@ -67,12 +72,14 @@ def test_list_conversion_str2int():
     for b in output_list_b:
         assert str(type(b))[-5:-2] == 'int'
 
+
 # Ensure subtraction of each integer in list_b from the corresponding in list_a
 def test_exon_len_func():
     list_a = [i for i in range(40) if i %2 ==1]
     list_b = [i for i in range(40) if i %2 ==0]
     assert fp.exon_len_func(list_b, list_a) == [1 for i in range(len(list_a))]
     assert fp.exon_len_func(list_b, list_a) == [1 for i in range(len(list_b))]
+
 
 # Testing of correct values to be returned upon parsing of the LRG XML file
 def test_tree_values():
@@ -81,6 +88,7 @@ def test_tree_values():
     assert gene_chr_start == 48259457
     assert gene_chr_end == 48284000
     assert strand == -1
+
 
 # Test to ensure correct chromosome number is retrieved from test.xml file
 def test_chrom_num():

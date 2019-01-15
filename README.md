@@ -81,10 +81,10 @@ The test files are located within a separate ```test_files``` directory.
 Usage:
 
 - Ensure you are within the ```test_files``` directory
-- Ensure both ```test_fancyparser.py``` and ```test.xml``` are present (test.xml is an unmodified copy of the LRG_1.xml,
+- Ensure both ```test_fancyparser.py``` and ```test1.xml``` are present (test.xml is an unmodified copy of the LRG_1.xml,
   renamed for clarity)
 - To invoke testing execute the command ```pytest -rpf```.
-- This will search within the directory for the test script and run on the ```test.xml``` file.
+- This will search within the directory for the test script and run on the ```test1.xml``` file.
 - The flags ```-r``` (short summary), ```-p``` (passed) and ```-f``` (fail) are recommended to give a basic visual
   output of the passed/failed tests, other variables may be found in the relevant ```man``` page
 
