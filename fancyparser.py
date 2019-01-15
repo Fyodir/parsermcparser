@@ -145,7 +145,7 @@ def strand_pos_neg(strand, lrg_start_list, lrg_end_list):
 
 
 # Pulls chromosome number from input LRG_xml
-def chrom_num(chr_exon_start):
+def chrom_num(chr_exon_start, chromosome):
     chr_list = []
     count = 0
     while count < len(chr_exon_start):
@@ -187,5 +187,7 @@ if __name__ == "__main__":
     exon_len = exon_len_func(lrg_start_list, lrg_end_list)
     chromosome, gene_chr_start, gene_chr_end, strand = (tree_values(tree))
     chr_exon_start, chr_exon_end = strand_pos_neg(strand, lrg_start_list, lrg_end_list)
-    chr_list = chrom_num(chr_exon_start)
+    chr_list = chrom_num(chr_exon_start, chromosome)
+    # print(chr_exon_start)
+    print(chr_list)
     output_bed(strand, chr_list, chr_exon_start, chr_exon_end, exon_num_var, exon_len)
