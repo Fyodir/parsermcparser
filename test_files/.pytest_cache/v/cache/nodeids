@@ -1,0 +1,10 @@
+[
+  "test_fancyparser.py::test_lrg_input",
+  "test_fancyparser.py::test_pending_lrg_input",
+  "test_fancyparser.py::test_tree_generation",
+  "test_fancyparser.py::test_gene_name",
+  "test_fancyparser.py::test_exon_num",
+  "test_fancyparser.py::test_exon_coord",
+  "test_fancyparser.py::test_list_conversion_str2int",
+  "test_fancyparser.py::test_tree_values"
+]

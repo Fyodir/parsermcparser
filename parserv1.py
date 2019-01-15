@@ -1,4 +1,31 @@
-# An XML parser in Python for reading an LRG file in .xml format and exporting exons coordinates
+""""
+
+*(Retired original working version of the LRG XML parsing program)*
+
+An XML parser in Python for reading an LRG file in .xml format and exporting exons coordinates
+
+Target XML file must be located within the ```/parsermcparser``` file directory
+
+##### Input:
+
+pass input xml file to program as string input
+
+##### Output:
+
+.bed file of queried gene titled ```LRG_(LRG number here)_(HGNC nomenclature).bed```
+
+##### Instructions:
+- Ensure target LRG_xml file is located within the ```/parsermcparser``` directory
+- Naviagte to the ```/parsermcparser``` directory on the bash terminal
+- Run the cmd line ```python3 parserv1 (insert target xml file) [enter]```
+- A bed file will be created in the ```/parsermcparser``` directory titled: ```LRG_(LRG number here)_(HGNC nomenclature).bed```
+
+##### Example Input Sequence:
+
+python3 parserv1 ./LRG_391.xml [enter]
+
+"""
+
 
 # importing required modules
 import xml.etree.ElementTree as ET
