@@ -90,12 +90,14 @@ def test_tree_values():
     assert strand == -1
 
 
-# Test to ensure correct chromosome number is retrieved from test.xml file
+# Ensure copy of chromosome number is created for each exon
 def test_chrom_num():
-    chr_list = []
-    for a in chr_list:
-        assert a == "chr17"
-
+    chromosome = '5'
+    chr_exon_start = [i+1 for i in range(30)]
+    chr_list = fp.chrom_num (chr_exon_start, chromosome)
+    assert len(chr_list) == len(chr_exon_start)
+    for i in chr_list:
+        assert i == "chr5"
 
 """
 Remaining test functions to create:
