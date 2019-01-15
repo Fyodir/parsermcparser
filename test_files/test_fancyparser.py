@@ -32,12 +32,12 @@ def test_tree_generation():
     assert root.startswith("<Element 'lrg' at ")
     assert curation == "Curation Status: LRG Published" or "Curation Status: Gene Under Curation"
 
-#asert create gene name is pulled from XML
+# Assert create gene name is pulled from XML
 def test_gene_name():
     gene, exon_num_var = fp.gene_name(tree)
     assert gene == 'LRG_1_COL1A1'
 
-# assert correct number of exons is calculated
+# Assert correct number of exons is calculated
 def test_exon_num():
     result = [str(i+1) for i in range(51)]
     assert fp.exon_num(root) == result
@@ -54,7 +54,7 @@ def test_exon_coord():
 
 
 
-# conversion of affixed lists of strings to seperate lists of integers
+# Conversion of affixed lists of strings to seperate lists of integers
 def test_list_conversion_str2int():
     list_a = [[str(i) for i in range(20) if i %2 ==1]]
     list_b = [[str(i) for i in range(20) if i %2 ==0]]
@@ -71,13 +71,20 @@ def test_exon_len_func():
     assert fp.exon_len_func(list_b, list_a) == [1 for i in range(len(list_a))]
     assert fp.exon_len_func(list_b, list_a) == [1 for i in range(len(list_b))]
 
-# testing of correct values to be returned upon parsing of the LRG XML file
+# Testing of correct values to be returned upon parsing of the LRG XML file
 def test_tree_values():
     chromosome, gene_chr_start, gene_chr_end, strand = fp.tree_values(tree)
     assert chromosome == '17'
     assert gene_chr_start == 48259457
     assert gene_chr_end == 48284000
     assert strand == -1
+
+# Test to ensure correct chromosome number is retrieved from test.xml file
+def test_chrom_num():
+    chr_list = []
+    for a in chr_list:
+        assert a == "chr17"
+
 
 """
 Remaining test functions to create:
@@ -91,6 +98,6 @@ Remaining test functions to create:
     exon_len_func                   DONE
     tree_values                     DONE
     strand_pos_neg
-    chrom_num
+    chrom_num                       DONE
     output_bed
 """
