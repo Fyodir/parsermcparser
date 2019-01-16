@@ -184,4 +184,3 @@ if __name__ == "__main__":
     chr_exon_start, chr_exon_end = strand_pos_neg(strand, lrg_start_list, lrg_end_list, gene_chr_start, gene_chr_end)
     chr_list = chrom_num(chr_exon_start, chromosome)
     output_bed(strand, chr_list, chr_exon_start, chr_exon_end, exon_num_var, exon_len)
-    print(exon_num(root))
