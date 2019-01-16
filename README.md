@@ -45,7 +45,7 @@ Use input of desired LRG number
 
 .xml file of queried gene titled "LRG_(LRG number here).xml" (ie `LRG_1.xml`)
 
-.bed file of queried gene titled "LRG_(LRG number here)_(HGNC nomenclature).bed" (ie `LRG_1_COL1A1.bed`)
+.bed file of queried gene titled "LRG_(LRG number)(HGNC nomenclature).bed" (ie `LRG_1_COL1A1.bed`)
 
 ##### Instructions for use:
 
@@ -79,7 +79,7 @@ The module "PyTest" was used to test the functionality of the code and to ensure
 
 The test files are located within a separate ```test_files``` directory.
 
-Usage:
+#### Usage:
 
 - Ensure you are within the ```test_files``` directory
 - Ensure both ```test_fancyparser.py``` and ```test1.xml``` are present (test.xml is an unmodified copy of the LRG_1.xml,
