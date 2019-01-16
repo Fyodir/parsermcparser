@@ -89,6 +89,36 @@ def test_tree_values():
     assert gene_chr_end == 48284000
     assert strand == -1
 
+def test_strand_pos_neg():
+    lrg_start_list = [i*3 for i in range(21)]
+    lrg_end_list = [i* 3 for i in range(21)]
+    gene_chr_start = 1000000
+    gene_chr_end = 1000000
+    # Testing positive strand mapping
+    strand_pos = 1
+    pos_chr_exon_start, pos_chr_exon_end = fp.strand_pos_neg(strand_pos, lrg_start_list, lrg_end_list, gene_chr_start, gene_chr_end)
+    pos_count1 = 0
+    pos_count2 = 0
+    for i in pos_chr_exon_start:
+        assert i == lrg_start_list[pos_count1] + gene_chr_start -1
+        pos_count1 += 1
+    for i in pos_chr_exon_end:
+        assert i == lrg_end_list[pos_count2] + gene_chr_start -1
+        pos_count2 += 1
+    # Testing negative strand mapping
+    strand_neg = -1
+    neg_chr_exon_start, neg_chr_exon_end = fp.strand_pos_neg(strand_neg, lrg_start_list, lrg_end_list, gene_chr_start, gene_chr_end)
+    neg_count1 = 0
+    neg_count2 = 0
+    for i in neg_chr_exon_start:
+        assert i == gene_chr_end - lrg_start_list[neg_count1] +1
+        neg_count1 += 1
+    for i in neg_chr_exon_end:
+        assert i == gene_chr_end - lrg_start_list[neg_count2] +1
+        neg_count2 += 1
+
+
+
 
 # Ensure copy of chromosome number is created for each exon
 def test_chrom_num():
@@ -110,7 +140,7 @@ Remaining test functions to create:
     test_list_conversion_str2int    DONE
     exon_len_func                   DONE
     tree_values                     DONE
-    strand_pos_neg
+    strand_pos_neg                  DONE
     chrom_num                       DONE
     output_bed
 """
