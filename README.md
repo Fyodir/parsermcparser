@@ -13,10 +13,12 @@ An XML parser in Python for producing a .bed file from an LRG_xml file obtained 
 
 Development start date: 27th November 2018.
 
+Available at: https://github.com/Fyodir/parsermcparser
+
 ## Prerequisites
 
 
-- Python (3.x.x)
+- Python (3.6.x)
 - Modules
     - elementTree (from XML library) (Standard Library)
     - time (Standard Library)
@@ -28,9 +30,9 @@ Development start date: 27th November 2018.
 
 ## Usage
 
-First run  `pip install -r requirements.txt` to ensure that all correct modules are installed on your system prior
-to use of the `fancyparser.py` program. If the required modules are not present, the prior command will install them
-onto your system
+First run  `pip install --upgrade -r requirements.txt` to ensure that all correct modules are installed on your system 
+prior to use of the `fancyparser.py` program. If the required modules are not present, the prior command will install 
+them onto your system
 
 ### fancyparser.py
 
