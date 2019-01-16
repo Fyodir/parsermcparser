@@ -1,6 +1,6 @@
 ## XML Parser for LRG files
 
-An XML parser in Python for producing a .bed file from an LRG_xml file obtained from the LRG-Sequence website 
+An XML parser in Python for producing a .bed file from an LRG_xml file obtained from the LRG-Sequence website
 "https://www.lrg-sequence.org"
 
 *n.b. This program is designed at this time to only work with the GRCh37.p13 Human Reference Genome build*
@@ -28,8 +28,8 @@ Development start date: 27th November 2018.
 
 ## Usage
 
-First run the `pip install -r requirements.txt` to ensure that all correct modules are installed on your system prior 
-to use of the `fancyparser.py` program. If the required modules are not present, the prior command will install them 
+First run  `pip install -r requirements.txt` to ensure that all correct modules are installed on your system prior
+to use of the `fancyparser.py` program. If the required modules are not present, the prior command will install them
 onto your system
 
 ### fancyparser.py
@@ -43,16 +43,17 @@ Use input of desired LRG number
 
 ##### Output:
 
-.xml file of queried gene titled "LRG_(LRG number here).xml"
-.bed file of queried gene titled "LRG_(LRG number here)_(HGNC nomenclature).bed"
+.xml file of queried gene titled "LRG_(LRG number here).xml" (ie `LRG_1.xml`)
+
+.bed file of queried gene titled "LRG_(LRG number here)_(HGNC nomenclature).bed" (ie `LRG_1_COL1A1.bed`)
 
 ##### Instructions for use:
 
 - Navigate to the ```/parsermcparser``` directory on the bash terminal
 - Run the cmd line `````python3 fancyparser.py`````
-- You will be prompted with the ```Please enter LRG number: ``` request
-- Enter LRG number of desired query gene (LRG numbers for HGNC names may be found at: 
-  https://www.lrg-sequence.org/search/?query=*)
+- You will be prompted with  ```Please enter LRG number: ``` request
+- Enter LRG number of desired query gene (LRG numbers for HGNC names may be found at:
+
 - View the outputted BED file via either a text editor (ie gedit, nano) or call the name of the file using bash cmd "cat"
 
 ##### Example usage:
@@ -66,8 +67,8 @@ Please enter LRG number: 39 [enter]
 
 ## Testing
 
-- The correct functioning of the parser was determined by the use of assert statements and error generation throughout 
-  the code.
+- The correct functioning of the parser was determined by the use of assert statements and error generation throughout
+  the script.
 - Modified faulty test XML files were used to ensure functioning of test features
 - Assert statements have been included to reject incorrect file types, multiple input LRG numbers, incorrectly formatted
   / damaged XML files
@@ -87,6 +88,3 @@ Usage:
 - This will search within the directory for the test script and run on the ```test1.xml``` file.
 - The flags ```-r``` (short summary), ```-p``` (passed) and ```-f``` (fail) are recommended to give a basic visual
   output of the passed/failed tests, other variables may be found in the relevant ```man``` page
-
-
-
