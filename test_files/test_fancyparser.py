@@ -12,6 +12,7 @@ import xml.etree.ElementTree as ET
 import fancyparser as fp
 
 fileName = 'test1.xml'
+xml202 = 'LRG_202.xml'
 input_lrg = '1'
 fp.input_lrg = '1'
 tree = ET.parse(fileName)
@@ -41,16 +42,17 @@ def test_tree_generation():
     assert curation in ['Curation Status: LRG Published\n' or 'Curation Status: Gene Under Curation\n']
 
 
+# Assert correct number of exons is calculated
+def test_exon_num():
+    tree202 = ET.parse(xml202)
+    root202 = tree202.getroot()
+    result = [str(i+1) for i in range(183)]
+    assert fp.exon_num(root202) == result
+
 # Assert create gene name is pulled from XML
 def test_gene_name():
     gene, exon_num_var = fp.gene_name(tree)
     assert gene == 'LRG_1_COL1A1'
-
-
-# Assert correct number of exons is calculated
-def test_exon_num():
-    result = [str(i+1) for i in range(51)]
-    assert fp.exon_num(root) == result
 
 
 def test_exon_coord():
@@ -106,6 +108,8 @@ def test_strand_pos_neg():
     for i in pos_chr_exon_end:
         assert i == lrg_end_list[pos_count2] + gene_chr_start -1
         pos_count2 += 1
+    assert len(pos_chr_exon_start) == len(lrg_start_list)
+    assert len(pos_chr_exon_end) == len(lrg_end_list)
     # Testing negative strand mapping
     strand_neg = -1
     neg_chr_exon_start, neg_chr_exon_end = fp.strand_pos_neg(strand_neg, lrg_start_list, lrg_end_list, gene_chr_start, gene_chr_end)
@@ -117,10 +121,8 @@ def test_strand_pos_neg():
     for i in neg_chr_exon_end:
         assert i == gene_chr_end - lrg_start_list[neg_count2] +1
         neg_count2 += 1
-    assert len(pos_chr_exon_start) == len(lrg_start_list)
-    assert len(pos_chr_exon_end) == len(lrg_end_list)
     assert len(neg_chr_exon_start) == len(lrg_start_list)
-    assert len(neg_chr_exon_end) == len(lrg_end_list)  
+    assert len(neg_chr_exon_end) == len(lrg_end_list)
 
 
 

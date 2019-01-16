@@ -48,15 +48,6 @@ def tree_generation(fileName):
         curation = 'Curation Status: Gene Under Curation\n'
         return tree, root, curation
 
-
-# Acquires the name of the gene for use in .bed file naming
-def gene_name(tree):
-    for gene_name in tree.findall('.//lrg_locus'):
-        gene = 'LRG' + '_' + str(input_lrg) + "_" + gene_name.text
-        exon_num_var = exon_num(root)
-    return gene, exon_num_var
-
-
 # Function to return exon numbers of lrg file in a list
 def exon_num(root):
     exon_num_list = []
@@ -70,9 +61,14 @@ def exon_num(root):
                         exon_num_list.append((str(i.attrib))[-4:-2])    # Returns exons 10 - 99
                     elif (str(i.attrib))[-6] == "'":
                         exon_num_list.append((str(i.attrib))[-5:-2])    # Returns exons 100 - 999
-                    else:
-                        print("Incorrectly formatted file. Is this an XML?")
     return (exon_num_list)
+
+# Acquires the name of the gene for use in .bed file naming
+def gene_name(tree):
+    for gene_name in tree.findall('.//lrg_locus'):
+        gene = 'LRG' + '_' + str(input_lrg) + "_" + gene_name.text
+        exon_num_var = exon_num(root)
+    return gene, exon_num_var
 
 
 # Function to return two lists for start and end coordinates of exons respectively
@@ -188,3 +184,4 @@ if __name__ == "__main__":
     chr_exon_start, chr_exon_end = strand_pos_neg(strand, lrg_start_list, lrg_end_list, gene_chr_start, gene_chr_end)
     chr_list = chrom_num(chr_exon_start, chromosome)
     output_bed(strand, chr_list, chr_exon_start, chr_exon_end, exon_num_var, exon_len)
+    print(exon_num(root))
