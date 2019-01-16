@@ -117,7 +117,10 @@ def test_strand_pos_neg():
     for i in neg_chr_exon_end:
         assert i == gene_chr_end - lrg_start_list[neg_count2] +1
         neg_count2 += 1
-
+    assert len(pos_chr_exon_start) == len(lrg_start_list)
+    assert len(pos_chr_exon_end) == len(lrg_end_list)
+    assert len(neg_chr_exon_start) == len(lrg_start_list)
+    assert len(neg_chr_exon_end) == len(lrg_end_list)  
 
 
 
