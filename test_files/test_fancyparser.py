@@ -4,6 +4,7 @@ within the same directory. For full usage please refer to the README file.
 """
 
 # Importing required modules
+import pytest
 import sys
 import os
 sys.path.append(os.path.abspath('../'))
@@ -37,7 +38,7 @@ def test_tree_generation():
     curation = str(curation)
     assert tree.startswith("<xml.etree.ElementTree.ElementTree object at ")
     assert root.startswith("<Element 'lrg' at ")
-    assert curation == "Curation Status: LRG Published" or "Curation Status: Gene Under Curation"
+    assert curation in ['Curation Status: LRG Published\n' or 'Curation Status: Gene Under Curation\n']
 
 
 # Assert create gene name is pulled from XML
