@@ -30,8 +30,8 @@ Available at: https://github.com/Fyodir/parsermcparser
 
 ## Usage
 
-First run  `pip install --upgrade -r requirements.txt` to ensure that all correct modules are installed on your system 
-prior to use of the `fancyparser.py` program. If the required modules are not present, the prior command will install 
+First run  `pip install --upgrade -r requirements.txt` to ensure that all correct modules are installed on your system
+prior to use of the `fancyparser.py` program. If the required modules are not present, the prior command will install
 them onto your system
 
 ### fancyparser.py
@@ -71,7 +71,8 @@ Please enter LRG number: 39 [enter]
 
 - The correct functioning of the parser was determined by the use of assert statements and error generation throughout
   the script.
-- Modified faulty test XML files were used to ensure functioning of test features
+- A number of modified, faulty, and corectly formatted test XML files were used to ensure functioning of test features
+  - test1.xml, LRG1.xml, LRG_14.xml, LRG_202.xml
 - Assert statements have been included to reject incorrect file types, multiple input LRG numbers, incorrectly formatted
   / damaged XML files
 - The standard PyTest testing framework was also used to test the whole script for correct functioning (see below)
