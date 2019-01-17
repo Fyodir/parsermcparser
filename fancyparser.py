@@ -63,6 +63,7 @@ def exon_num(root):
                         exon_num_list.append((str(i.attrib))[-5:-2])    # Returns exons 100 - 999
     return (exon_num_list)
 
+
 # Acquires the name of the gene for use in .bed file naming
 def gene_name(tree):
     for gene_name in tree.findall('.//lrg_locus'):

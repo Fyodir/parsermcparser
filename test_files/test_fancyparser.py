@@ -49,6 +49,7 @@ def test_exon_num():
     result = [str(i+1) for i in range(183)]
     assert fp.exon_num(root202) == result
 
+
 # Assert create gene name is pulled from XML
 def test_gene_name():
     gene, exon_num_var = fp.gene_name(tree)
@@ -92,6 +93,7 @@ def test_tree_values():
     assert gene_chr_end == 48284000
     assert strand == -1
 
+
 def test_strand_pos_neg():
     lrg_start_list = [i*3 for i in range(21)]
     lrg_end_list = [i* 3 for i in range(21)]
@@ -125,7 +127,6 @@ def test_strand_pos_neg():
     assert len(neg_chr_exon_end) == len(lrg_end_list)
 
 
-
 # Ensure copy of chromosome number is created for each exon
 def test_chrom_num():
     chromosome = '5'
@@ -134,19 +135,3 @@ def test_chrom_num():
     assert len(chr_list) == len(chr_exon_start)
     for i in chr_list:
         assert i == "chr5"
-
-"""
-Remaining test functions to create:
-    lrg_input                       DONE
-    pending_lrg_input               DONE
-    tree_generation                 DONE
-    gene_name                       DONE
-    exon_num                        DONE
-    exon_coord                      DONE
-    test_list_conversion_str2int    DONE
-    exon_len_func                   DONE
-    tree_values                     DONE
-    strand_pos_neg                  DONE
-    chrom_num                       DONE
-    output_bed
-"""
