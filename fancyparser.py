@@ -42,11 +42,15 @@ def tree_generation(fileName):
         curation = 'Curation Status: LRG Published\n'
         return tree, root, curation
     except SyntaxError:
-        fileName = pending_lrg_input(input_lrg)
-        tree = ET.parse(fileName)
-        root = tree.getroot()
-        curation = 'Curation Status: Gene Under Curation\n'
-        return tree, root, curation
+        try:
+            fileName = pending_lrg_input(input_lrg)
+            tree = ET.parse(fileName)
+            root = tree.getroot()
+            curation = 'Curation Status: Gene Under Curation\n'
+            return tree, root, curation
+        except:
+            print("Invalid LRG, please check inputted LRG number")
+            exit()
 
 # Function to return exon numbers of lrg file in a list
 def exon_num(root):
