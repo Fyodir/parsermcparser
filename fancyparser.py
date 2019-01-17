@@ -46,7 +46,7 @@ def tree_generation(fileName):
             fileName = pending_lrg_input(input_lrg)
             tree = ET.parse(fileName)
             root = tree.getroot()
-            curation = 'Curation Status: Gene Under Curation\n'
+            curation = 'Curation Status: Gene Under Curation or Pending Approval\n'
             return tree, root, curation
         except:
             print("Invalid LRG, please check inputted LRG number")
