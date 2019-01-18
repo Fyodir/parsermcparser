@@ -13,7 +13,7 @@ import requests
 
 # Function to use user input to pull LRG XML from  LRG website and create local XML file for parsing
 def lrg_input(input_lrg):
-    # assert to ensure only positive integers are entered by the user
+    # Assert to ensure only positive integers are entered by the user
     assert input_lrg.isdigit(), "Please provide a singular positive integer"
     url = 'http://ftp.ebi.ac.uk/pub/databases/lrgex/LRG_%s.xml' % input_lrg
     r = requests.get(url, allow_redirects=True)

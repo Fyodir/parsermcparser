@@ -30,10 +30,12 @@ format, retrieving specific elements from the file for further use (i.e. integra
 - Quality of the documentation:
   - Comments in the code
   - Help documentation/user manuals
+  
 - Quality of the code:
   - Sensible variable names
   - Well-structured code with use of functions etc.
   - Functionality of the software
+  
 - Professional standards:
 	- Tests available for the code
 	- Evidence of good use of Github
