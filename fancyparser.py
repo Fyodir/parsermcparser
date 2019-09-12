@@ -173,6 +173,8 @@ def output_bed(strand, chr_list, chr_exon_start, chr_exon_end, exon_num_var, exo
                                                                                     exon_len):
             file_temp.write(
                 "{0}\t{1}\t{2}\t{3}\t{4}\n".format(chr_list, chr_exon_start, chr_exon_end, exon_num_var, exon_len))
+    
+    print('File Created: %s.bed' % gene)
 
 
 # If the program is run as the __main__ program an output .bed is generated
