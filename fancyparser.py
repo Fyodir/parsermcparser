@@ -17,8 +17,8 @@ def lrg_input(input_lrg):
     assert input_lrg.isdigit(), "Please provide a singular positive integer"
     url = 'http://ftp.ebi.ac.uk/pub/databases/lrgex/LRG_%s.xml' % input_lrg
     r = requests.get(url, allow_redirects=True)
-    open('LRG_%s.xml' % input_lrg, 'wb').write(r.content)
-    fileName = open('LRG_%s.xml' % input_lrg, 'r')
+    open('files_xml/LRG_%s.xml' % input_lrg, 'wb').write(r.content)
+    fileName = open('files_xml/LRG_%s.xml' % input_lrg, 'r')
     return fileName
 
 
@@ -28,8 +28,8 @@ def pending_lrg_input(input_lrg):
     assert input_lrg.isdigit(), "Please provide a singular positive integer"
     url = 'http://ftp.ebi.ac.uk/pub/databases/lrgex/pending/LRG_%s.xml' % input_lrg
     r = requests.get(url, allow_redirects=True)
-    open('LRG_%s.xml' % input_lrg, 'wb').write(r.content)
-    fileName = open('LRG_%s.xml' % input_lrg, 'r')
+    open('files_xml/LRG_%s.xml' % input_lrg, 'wb').write(r.content)
+    fileName = open('files_xml/LRG_%s.xml' % input_lrg, 'r')
     return fileName
 
 
@@ -163,7 +163,7 @@ def output_bed(strand, chr_list, chr_exon_start, chr_exon_end, exon_num_var, exo
     else:
         strand = "Strand: Reverse (-)\n\n"
     # Writes generated values to the output .bed file
-    with open('%s.bed' % gene, 'w+') as file_temp:
+    with open('files_bed/%s.bed' % gene, 'w+') as file_temp:
         file_temp.write(date)
         file_temp.write(curation)
         file_temp.write(strand)
